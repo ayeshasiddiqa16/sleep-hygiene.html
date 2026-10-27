@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLEEP — Your Body's Night Shift | Presidency Green Club</title>
+<meta name="description" content="A fun, animated journey through the science of sleep. Sleep hygiene, sustainable health and well-being — by Presidency Green Club, House Eagle.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & TOKENS ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg0:#050a1e; --bg1:#0a1330; --bg2:#122454;
+  --ink:#1d2b52; --muted:#5f6f9c;
+  --cyan:#54d8ea; --yellow:#ffd166; --pink:#ff8fb2;
+  --green:#7ce495; --purple:#b9a6f5; --coral:#ff9e7d;
+  --card:#ffffff; --rad:26px;
+  --shadow:0 20px 60px rgba(3,8,28,.45);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',system-ui,sans-serif;
+  color:#eaf2ff; overflow-x:hidden;
+  background:
+    radial-gradient(1100px 700px at 85% -5%, rgba(84,216,234,.14), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(185,166,245,.12), transparent 60%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(255,209,102,.08), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1) 45%, var(--bg2));
+}
+::selection{background:var(--cyan);color:#050a1e}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:var(--bg0)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan),var(--purple));border-radius:99px;border:2px solid var(--bg0)}
+section{scroll-margin-top:92px}
+.wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+b{font-weight:900}
+
+/* ============ STARFIELD & SHOOTING STARS ============ */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+#stars span{position:absolute;border-radius:50%;background:#fff;opacity:.65;animation:twinkle linear infinite}
+#stars span.big{box-shadow:0 0 9px 1.5px rgba(255,255,255,.85)}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.95;transform:scale(1.15)}}
+.shoot{position:fixed;left:-150px;width:135px;height:2px;border-radius:99px;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,#fff,rgba(255,255,255,0));opacity:0;
+  animation:fly 12s ease-in infinite;animation-delay:var(--d,0s)}
+@keyframes fly{
+  0%{transform:translate(0,0) rotate(16deg);opacity:0}
+  2.5%{opacity:1}
+  10%{transform:translate(125vw,34vh) rotate(16deg);opacity:0}
+  100%{transform:translate(125vw,34vh) rotate(16deg);opacity:0}
+}
+
+/* ============ PROGRESS + NAV ============ */
+#progress{position:fixed;top:0;left:0;height:4px;width:0;z-index:300;
+  background:linear-gradient(90deg,var(--cyan),var(--yellow),var(--pink));border-radius:99px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:all .45s var(--ease)}
+.nav.scrolled{background:rgba(6,11,30,.78);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 26px}
+.brand{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.25rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:.02em}
+.brand .logo{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:1.15rem;
+  background:linear-gradient(135deg,#1d3c78,#2b5db8);box-shadow:0 8px 22px rgba(43,93,184,.5);animation:bob 4s ease-in-out infinite}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{color:#c7d3f2;text-decoration:none;font-weight:800;font-size:.92rem;padding:9px 14px;border-radius:99px;transition:all .3s var(--ease)}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.09);transform:translateY(-2px)}
+.nav-links a.active{color:#06102c;background:var(--cyan);box-shadow:0 8px 20px rgba(84,216,234,.35)}
+
+/* ============ BUTTONS & CHIPS ============ */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;
+  color:#06102c;text-decoration:none;padding:15px 30px;border-radius:99px;border:0;cursor:pointer;
+  background:linear-gradient(135deg,var(--cyan),var(--yellow));
+  box-shadow:0 14px 34px rgba(84,216,234,.35);transition:all .35s var(--ease)}
+.btn:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 44px rgba(84,216,234,.5)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.28);box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.13);box-shadow:0 14px 30px rgba(255,255,255,.08)}
+.btn.small{padding:10px 20px;font-size:.9rem}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);
+  padding:8px 17px;border-radius:99px;font-weight:800;font-size:.85rem;color:#dfe9ff}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:130px 24px 90px;z-index:1}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.hero h1{
+  font-family:'Fredoka',sans-serif;font-weight:700;line-height:.95;
+  font-size:clamp(4.6rem,14vw,10rem);letter-spacing:.05em;
+  background:linear-gradient(180deg,#ffffff 30%,#aee2ff 75%,#54d8ea);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 14px 40px rgba(110,200,255,.35));
+}
+.shift{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--cyan);
+  letter-spacing:.32em;font-size:clamp(.95rem,2.4vw,1.4rem);text-transform:uppercase}
+.script{font-family:'Caveat',cursive;font-weight:700;line-height:1.15}
+.script.cyan{color:var(--cyan);font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.script.yellow{color:var(--yellow);font-size:clamp(1.15rem,2.2vw,1.5rem)}
+.hero-sub{color:#c6d4f5;font-size:1.08rem;max-width:560px;line-height:1.7}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px}
+.hero-art{position:relative;display:grid;place-items:center;min-height:340px}
+.moon{position:relative;width:min(300px,58vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 36% 34%,#fffbe9,#ffeeb0 46%,#f5ca5e 76%,#e9b74b);
+  box-shadow:0 0 70px rgba(255,224,130,.45),0 0 160px rgba(255,224,130,.22),inset -20px -16px 44px rgba(210,152,48,.4);
+  animation:bob 7s ease-in-out infinite;transition:translate .6s var(--ease)}
+.crater{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(214,164,66,.55),rgba(190,140,44,.25));box-shadow:inset 2px 3px 6px rgba(150,105,25,.35)}
+.crater.c1{width:22%;height:22%;top:20%;left:24%}
+.crater.c2{width:14%;height:14%;top:52%;left:58%}
+.crater.c3{width:10%;height:10%;top:64%;left:30%}
+.zz{position:absolute;font-family:'Caveat',cursive;font-weight:700;color:#cfefff;text-shadow:0 0 18px rgba(84,216,234,.8);animation:floatUp 3.6s ease-in-out infinite}
+.z1{font-size:2rem;top:14%;right:20%}
+.z2{font-size:2.8rem;top:4%;right:32%;animation-delay:.7s}
+.z3{font-size:1.6rem;top:26%;right:8%;animation-delay:1.3s}
+.star-badge{position:absolute;bottom:8%;left:12%;display:flex;flex-direction:column;align-items:center;gap:4px;
+  width:92px;height:92px;border-radius:50%;font-size:2rem;justify-content:center;
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);
+  box-shadow:0 14px 34px rgba(3,8,28,.4);animation:bob 5s ease-in-out infinite;animation-delay:1s}
+.star-badge small{font-family:'Fredoka',sans-serif;font-size:.62rem;letter-spacing:.06em;color:#dfe9ff;text-transform:uppercase}
+.scrolldown{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:27px;height:44px;
+  border:2px solid rgba(255,255,255,.4);border-radius:16px;display:grid;justify-items:center;padding-top:7px}
+.scrolldown span{width:4px;height:9px;border-radius:99px;background:var(--cyan);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+
+/* ============ TICKER ============ */
+.ticker{overflow:hidden;border-block:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.035);backdrop-filter:blur(6px);position:relative;z-index:1}
+.ticker-track{display:flex;gap:3.2rem;width:max-content;padding:15px 0;animation:scrollX 26s linear infinite}
+.tk{font-family:'Fredoka',sans-serif;font-weight:500;font-size:1.02rem;letter-spacing:.12em;color:#cfe0ff;white-space:nowrap}
+.tk em{color:var(--yellow);font-style:normal}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ============ SECTION SCAFFOLD ============ */
+.sec{position:relative;padding:110px 0;z-index:1}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:20px}
+.num{flex:none;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.55rem;color:#06102c;
+  background:linear-gradient(135deg,var(--cyan),var(--yellow));
+  box-shadow:0 12px 32px rgba(84,216,234,.4),inset 0 -4px 10px rgba(6,16,44,.15);
+  animation:bob 5s ease-in-out infinite}
+.title{font-family:'Fredoka',sans-serif;font-weight:600;color:#fff;font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1.1}
+.kicker{font-family:'Caveat',cursive;font-weight:700;color:var(--yellow);font-size:clamp(1.15rem,2.2vw,1.5rem)}
+.lead{max-width:760px;color:#b9c7ea;font-size:1.07rem;line-height:1.8;margin-bottom:44px}
+.lead b{color:#eaf2ff}
+/* ============ GENERIC CARDS ============ */
+.card{background:var(--card);color:var(--ink);border-radius:var(--rad);padding:30px;
+  box-shadow:var(--shadow);transition:all .45s var(--ease)}
+.card:hover{transform:translateY(-9px);box-shadow:0 30px 70px rgba(3,8,28,.6)}
+.icon-bub{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;font-size:1.95rem;
+  background:var(--soft,#e8f7fb);margin-bottom:18px;transition:transform .4s var(--ease)}
+.card:hover .icon-bub{transform:rotate(-8deg) scale(1.12)}
+.card h3{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.35rem;margin-bottom:8px}
+.card p{color:var(--muted);line-height:1.65;font-size:.99rem}
+.tag{display:inline-block;margin-top:14px;padding:6px 14px;border-radius:99px;
+  font-family:'Fredoka',sans-serif;font-weight:500;font-size:.78rem;letter-spacing:.05em;
+  color:var(--ac,#3fc3d8);background:var(--soft,#e8f7fb);text-transform:uppercase}
+
+/* ============ 1 · BIOLOGY ============ */
+.bio-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:stretch}
+.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mel{--ac:#3fc3d8;--soft:#e3f6fa}
+.cor{--ac:#e8a93c;--soft:#fdf3dd}
+.brn{--ac:#8d75e0;--soft:#efeafc}
+.hrt{--ac:#e77c9c;--soft:#ffe9f0}
+.orbit-panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  border-radius:32px;padding:36px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+.orbit{position:relative;width:250px;height:250px}
+.ring{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(255,255,255,.3)}
+.spin{position:absolute;inset:-26px;animation:rot 16s linear infinite}
+.sat{position:absolute;top:50%;left:-22px;transform:translateY(-50%)}
+.sat-emoji{font-size:2.4rem;display:block;animation:rotRev 16s linear infinite;
+  filter:drop-shadow(0 0 14px rgba(255,255,255,.45))}
+.sat2{top:auto;left:auto;bottom:-8px;right:-10px;transform:none}
+.orbit-center{position:absolute;inset:0;display:grid;place-items:center}
+.orbit-center .core{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;font-size:3rem;
+  background:radial-gradient(circle at 35% 30%,#2b5db8,#16306b);
+  box-shadow:0 0 0 12px rgba(84,216,234,.09),0 0 46px rgba(84,216,234,.35);
+  animation:pulse 3s ease-in-out infinite}
+.orbit-cap{text-align:center;color:#c6d4f5;font-size:.95rem;line-height:1.6;max-width:260px}
+.orbit-cap b{color:var(--cyan)}
+
+/* ============ 2 · HOW MUCH SLEEP ============ */
+.sleep-panel{background:var(--card);color:var(--ink);border-radius:34px;padding:clamp(26px,4.5vw,48px);box-shadow:var(--shadow)}
+.bar-row{margin:20px 0}
+.bar-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:9px}
+.age{font-weight:900;color:var(--ink);font-size:1.02rem}
+.age small{color:var(--muted);font-weight:700;font-size:.82rem}
+.hrs{font-family:'Fredoka',sans-serif;font-weight:600;color:#0a1330;white-space:nowrap;font-size:1.08rem}
+.bar-track{height:17px;background:#e9eefb;border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;width:0;border-radius:99px;position:relative;
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  transition:width 1.35s var(--ease)}
+.bar-fill::after{content:"";position:absolute;inset:0;border-radius:99px;
+  background:linear-gradient(90deg,rgba(255,255,255,.35),transparent 45%)}
+.b1{--c1:#38b6d8;--c2:#2b5db8}
+.b2{--c1:#43d0b5;--c2:#2b9db8}
+.b3{--c1:#7ce495;--c2:#c8e06a}
+.b4{--c1:#ffd166;--c2:#ff9e5c}
+.b5{--c1:#ff9e7d;--c2:#ff7aa2}
+.b6{--c1:#c39be0;--c2:#8d75e0}
+.panel-note{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.panel-note p{color:var(--muted);font-size:.92rem}
+.fun-chip{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:99px;
+  font-weight:900;font-size:.9rem;color:#06102c;background:linear-gradient(135deg,var(--yellow),var(--coral));
+  box-shadow:0 10px 26px rgba(255,209,102,.35)}
+
+/* ============ BEDTIME CALCULATOR ============ */
+.calc-panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:34px;
+  padding:clamp(28px,4.5vw,50px);backdrop-filter:blur(12px);box-shadow:var(--shadow);text-align:center}
+.calc-top{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px;margin-bottom:8px}
+.calc-top label{font-family:'Fredoka',sans-serif;font-weight:500;font-size:clamp(1.15rem,2.6vw,1.5rem);color:#fff}
+.calc-top input{font-family:'Fredoka',sans-serif;font-size:1.35rem;font-weight:600;color:#06102c;
+  background:var(--card);border:3px solid transparent;border-radius:18px;padding:12px 18px;outline:none;
+  box-shadow:0 12px 30px rgba(3,8,28,.4);transition:all .3s var(--ease);cursor:pointer}
+.calc-top input:hover,.calc-top input:focus{border-color:var(--cyan);transform:translateY(-2px)}
+.calc-sub{color:#a9b9e4;font-size:.98rem;margin-bottom:26px}
+.calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:26px}
+.cycle-card{background:var(--card);color:var(--ink);border-radius:22px;padding:22px 16px;
+  opacity:0;transform:scale(.85) translateY(14px);animation:popIn .55s var(--ease) forwards;
+  animation-delay:calc(var(--i)*90ms);transition:transform .3s var(--ease)}
+.cycle-card:hover{transform:translateY(-6px)}
+.cycle-card.best{outline:3px solid var(--yellow);outline-offset:-3px}
+.cc-time{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.5rem;color:#0a1330}
+.cc-meta{color:var(--muted);font-weight:800;font-size:.88rem;margin-top:6px}
+.cc-tag{display:inline-block;margin-top:10px;padding:5px 13px;border-radius:99px;
+  font-family:'Fredoka',sans-serif;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.c1 .cc-tag{color:#2b8fae;background:#e3f6fa}
+.c2 .cc-tag{color:#a07d16;background:#fdf3dd}
+.c3 .cc-tag{color:#4f9e63;background:#e6f8ea}
+.c4 .cc-tag{color:#9a6cc4;background:#f1eafd}
+
+/* ============ 3 · DEPRIVATION vs INSOMNIA ============ */
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:stretch}
+.vs-card{border-radius:30px;padding:34px;box-shadow:var(--shadow);transition:transform .45s var(--ease)}
+.vs-card:hover{transform:translateY(-8px) rotate(-.6deg)}
+.vs-card h3{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.5rem;margin-bottom:12px;color: #1d2b52;}
+.vs-card p{line-height:1.7;font-size:1.02rem;color:#41446b}
+.vs-card .big-ico{font-size:3.2rem;display:block;margin-bottom:14px;animation:bob 4.5s ease-in-out infinite}
+.dep{background:linear-gradient(160deg,#ffd9df)}
+.ins{background:linear-gradient(160deg,#ffe9b3)}
+.vs-badge{align-self:center;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.45rem;color:#1d2b52;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  box-shadow:0 0 0 11px rgba(255,143,178,.16),0 16px 38px rgba(255,143,178,.45);
+  animation:pulse 2.6s ease-in-out infinite}
+.vs-note{margin-top:30px;text-align:center}
+.vs-note span{display:inline-block;font-family:'Fredoka',sans-serif;font-weight:500;font-size:1.12rem;color:#0a1330;
+  background:var(--card);padding:16px 30px;border-radius:99px;box-shadow:var(--shadow)}
+
+/* ============ 4 · EFFECTS ============ */
+.fx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+.fx ul{list-style:none;margin-top:14px;display:grid;gap:9px}
+.fx li{position:relative;padding-left:26px;color:var(--muted);font-weight:700;font-size:.95rem;line-height:1.45}
+.fx li::before{content:"";position:absolute;left:4px;top:.52em;width:9px;height:9px;border-radius:50%;background:var(--ac)}
+.fx-icon{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-size:2.1rem;margin-bottom:16px;
+  background:var(--soft);animation:bob 5s ease-in-out infinite}
+.brai{--ac:#8d75e0;--soft:#efeafc}
+.emot{--ac:#dfa32c;--soft:#fdf3dd}
+.bodi{--ac:#e8735c;--soft:#ffece5}
+.strips{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.strip{border-radius:24px;padding:26px 30px}
+.strip h4{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:10px}
+.strip .when{font-size:.8rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.strip ul{list-style:none;display:grid;gap:7px}
+.strip li{font-weight:800;font-size:.97rem}
+.imm{background:linear-gradient(150deg,#fff6d8,#ffe9b3);color:#5c4a12}
+.imm li::before{content:"⚡ "}
+.long{background:linear-gradient(150deg,#2a1a4a,#3d1f3f);color:#ffd9df;border:1px solid rgba(255,143,178,.35)}
+.long .when{color:var(--pink)}
+.long li::before{content:"⚠️ "}
+
+/* ============ 5 · HABITS ============ */
+.habit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.habit{position:relative;text-align:center;padding:28px 18px;overflow:hidden}
+.habit::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;
+  background:linear-gradient(90deg,var(--ac),var(--soft))}
+.habit .h-icon{width:78px;height:78px;margin:6px auto 16px;border-radius:50%;display:grid;place-items:center;
+  font-size:2.3rem;background:var(--soft);transition:transform .4s var(--ease)}
+.habit:hover .h-icon{transform:translateY(-6px) scale(1.15) rotate(8deg)}
+.habit h3{font-size:1.08rem}
+.habit p{font-size:.88rem}
+.h1c{--ac:#54d8ea;--soft:#e3f6fa}
+.h2c{--ac:#e8735c;--soft:#ffece5}
+.h3c{--ac:#8d75e0;--soft:#efeafc}
+.h4c{--ac:#dfa32c;--soft:#fdf3dd}
+.h5c{--ac:#4f9e63;--soft:#e6f8ea}
+
+/* ============ BIG PICTURE ============ */
+.big-card{position:relative;overflow:hidden;border-radius:38px;padding:clamp(40px,6vw,70px);text-align:center;
+  background:linear-gradient(140deg,#0e3d2c,#14532d 55%,#1d6b3a);
+  border:1px solid rgba(124,228,149,.4);box-shadow:0 26px 70px rgba(10,50,30,.55)}
+.big-card .script-title{font-family:'Caveat',cursive;font-weight:700;color:var(--green);
+  font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:16px}
+.big-card p.main{color:#e7f6ec;font-size:clamp(1.25rem,2.8vw,1.75rem);line-height:1.6;max-width:760px;margin:0 auto 22px;font-weight:700}
+.big-card .hl{font-family:'Caveat',cursive;font-weight:700;color:var(--yellow);font-size:clamp(1.7rem,3.4vw,2.5rem)}
+.leaf{position:absolute;font-size:2.2rem;opacity:.55;animation:sway 6s ease-in-out infinite}
+.leaf.l1{top:12%;left:6%}
+.leaf.l2{bottom:14%;right:8%;animation-delay:1.4s;font-size:2.8rem}
+.leaf.l3{top:18%;right:14%;animation-delay:2.6s;font-size:1.7rem}
+.earth{font-size:clamp(3.2rem,7vw,4.6rem);display:block;margin-bottom:10px;animation:bob 6s ease-in-out infinite}
+
+/* ============ QUOTE + FOREST ============ */
+.quote-sec{position:relative;text-align:center;padding:150px 24px 200px;overflow:hidden;z-index:1}
+.q-line{font-family:'Caveat',cursive;font-weight:700;color:#fff;line-height:1.25;
+  font-size:clamp(2.4rem,6.5vw,4.3rem);text-shadow:0 0 40px rgba(84,216,234,.35)}
+.q-line .hl-c{color:var(--cyan)}
+.q-line .hl-y{color:var(--yellow)}
+.q-line .hl-g{color:var(--green)}
+.trees{position:absolute;bottom:0;left:0;width:100%;pointer-events:none;opacity:.95}
+
+/* ============ SOURCES + FOOTER ============ */
+.src-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.src-card{display:block;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:24px;backdrop-filter:blur(10px);
+  transition:all .4s var(--ease)}
+.src-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);border-color:var(--cyan)}
+.src-card h4{font-family:'Fredoka',sans-serif;font-weight:500;color:#fff;font-size:1.05rem;margin-bottom:8px}
+.src-card p{color:#a9b9e4;font-size:.9rem;line-height:1.55}
+.src-card .url{display:inline-block;margin-top:12px;color:var(--cyan);font-weight:900;font-size:.85rem}
+.foot{border-top:1px solid rgba(255,255,255,.09);padding:44px 24px 54px;text-align:center;position:relative;z-index:1}
+.foot-brand{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 34px;margin-bottom:16px;
+  font-family:'Fredoka',sans-serif;font-weight:500;letter-spacing:.14em;font-size:.92rem;color:#dfe9ff;text-transform:uppercase}
+.foot-brand span i{font-style:normal;margin-right:8px}
+.foot small{color:#8fa0cc;font-size:.9rem}
+
+/* ============ BACK TO TOP ============ */
+#topBtn{position:fixed;bottom:26px;right:26px;z-index:250;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;
+  font-size:1.5rem;background:linear-gradient(135deg,var(--cyan),var(--yellow));color:#06102c;
+  box-shadow:0 14px 34px rgba(84,216,234,.45);opacity:0;pointer-events:none;transform:translateY(18px);
+  transition:all .45s var(--ease)}
+#topBtn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+#topBtn:hover{transform:translateY(-5px) scale(1.07)}
+
+/* ============ REVEAL ON SCROLL ============ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ KEYFRAMES ============ */
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes rot{to{transform:rotate(360deg)}}
+@keyframes rotRev{to{transform:rotate(-360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes floatUp{0%{transform:translateY(0);opacity:0}25%{opacity:1}100%{transform:translateY(-46px);opacity:0}}
+@keyframes popIn{to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes sway{0%,100%{transform:rotate(-12deg) translateY(0)}50%{transform:rotate(14deg) translateY(-12px)}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-copy{align-items:center}
+  .hero-art{order:-1;min-height:260px}
+  .moon{width:200px}
+  .bio-layout{grid-template-columns:1fr}
+  .vs-grid{grid-template-columns:1fr}
+  .vs-badge{margin:0 auto}
+  .fx-grid{grid-template-columns:1fr 1fr}
+  .habit-grid{grid-template-columns:repeat(3,1fr)}
+  .src-grid{grid-template-columns:1fr}
+  .strips{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .sec{padding:80px 0}
+  .sec-head{flex-direction:row}
+  .bio-grid{grid-template-columns:1fr}
+  .fx-grid{grid-template-columns:1fr}
+  .habit-grid{grid-template-columns:repeat(2,1fr)}
+  .num{width:50px;height:50px;font-size:1.25rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+.sleep-lab{--sl-forest:#405f4c;--sl-green:#73977b;--sl-mint:#bfd5c0;--sl-pale:#e9f1e6;--sl-cream:#faf9ef;--sl-ink:#2b4033;--sl-muted:#526858;--sl-line:#d4e0d2;color:var(--sl-ink);background:transparent;border:0;border-radius:0;padding:clamp(10px,2vw,20px) 0;margin:16px auto;max-width:1120px;overflow:visible;font-family:inherit}
+.sleep-lab *{box-sizing:border-box}.sleep-lab [hidden]{display:none!important}.sl-header{text-align:center;max-width:690px;margin:0 auto 25px}.sl-eyebrow{display:block;color:#65846b;font-size:.68rem;font-weight:900;letter-spacing:.19em;margin-bottom:9px}.sl-header h2{font-size:clamp(2rem,4.4vw,3.35rem);letter-spacing:-.055em;line-height:1.04;margin:0 0 12px}.sl-header>p{color:var(--sl-muted);line-height:1.65;margin:0}
+.sl-machine-stage{display:flex;justify-content:center;padding:12px 0 28px}.sl-machine{width:min(100%,390px);position:relative;background:#c7dbc8;border:2px solid #a1bda4;border-radius:22px 22px 12px 12px;padding:14px 16px 0;box-shadow:0 20px 35px #3656401b;transition:transform .25s,box-shadow .25s}.sl-machine:hover{transform:translateY(-3px);box-shadow:0 25px 42px #3656402a}.sl-machine-sign{height:58px;border-radius:9px;background:#f9f8eb;border:1px solid #a8c1a8;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:5px;color:#496951;font-weight:950;letter-spacing:.14em;font-size:.92rem}.sl-machine-sign small{flex-basis:100%;text-align:center;font-size:.47rem;letter-spacing:.2em;color:#7a9b7d;margin-top:-11px}.sl-sign-star{color:#8aa98b;font-size:1.2rem}.sl-machine-cap{height:10px;background:#9ebba2;border-radius:5px 5px 0 0;margin:10px 7px 0}
+.sl-booth-window{height:340px;background:#6c8d74;border:7px solid #a1c0a5;border-bottom-width:9px;overflow:hidden;position:relative}.sl-booth-scene{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#e6edce 0,#a8c5a8 40%,#75947b 100%);overflow:hidden}.sl-window-glow{position:absolute;inset:0;background:linear-gradient(130deg,#fff7ce30,transparent 45%,#365f4420);pointer-events:none}.sl-window-moon{position:absolute;right:18px;top:12px;font-size:2.5rem;color:#fff8d7;text-shadow:0 0 18px #fff9c9}.sl-booth-content{position:absolute;inset:12px 10px 12px;z-index:1;display:flex;align-items:center;justify-content:center}.sl-booth-welcome{text-align:center;color:#fdf9e8;padding:12px;text-shadow:0 1px 5px #3756406b}.sl-booth-icon{display:block;font-size:2.2rem;color:#f7f1ce;margin-bottom:7px}.sl-booth-welcome strong{font-size:1.05rem}.sl-booth-welcome p{font-size:.78rem;line-height:1.5;max-width:200px;margin:8px auto 0;color:#fffdf1}.sl-curtain{position:absolute;top:0;bottom:0;width:52%;z-index:3;background:repeating-linear-gradient(90deg,#bad3bc 0 12px,#a9c8ad 12px 25px,#b6d0b8 25px 37px);box-shadow:inset 0 0 14px #476b4d20;transition:transform 1s cubic-bezier(.2,.8,.2,1)}.sl-curtain-left{left:0;border-right:2px solid #88a98d}.sl-curtain-right{right:0;border-left:2px solid #88a98d}.sl-machine.is-open .sl-curtain-left{transform:translateX(-96%)}.sl-machine.is-open .sl-curtain-right{transform:translateX(96%)}
+.sl-booth-question{position:relative;z-index:2;width:100%;max-height:300px;overflow:auto;padding:10px 7px;color:#2f4c37;text-shadow:none;animation:slPop .4s ease both}.sl-q-count{font-size:.57rem;font-weight:950;letter-spacing:.16em;color:#f9f5d8;text-align:center;margin-bottom:6px}.sl-booth-question h3{font-size:1.05rem;line-height:1.2;text-align:center;margin:0 0 5px;color:#fffdf0;text-shadow:0 1px 4px #36564088}.sl-booth-question>p{font-size:.72rem;text-align:center;color:#fffdf0;line-height:1.35;margin:0 0 10px}.sl-booth-options{display:grid;gap:6px}.sl-booth-options label{display:flex;gap:7px;align-items:flex-start;text-align:left;padding:7px 8px;background:#f8f8e9ed;border:1px solid #e5ecd8;border-radius:7px;font-size:.69rem;line-height:1.3;color:#3b5941;cursor:pointer;transition:background .2s,transform .2s}.sl-booth-options label:hover{background:#fff;transform:translateX(2px)}.sl-booth-options input{accent-color:#5e8969;flex-shrink:0;margin:2px 0 0}.sl-booth-next{display:block;border:0;border-radius:7px;background:#3e654a;color:#fffdf0;font-weight:850;font:inherit;font-size:.72rem;padding:9px 12px;margin:10px auto 0;cursor:pointer;box-shadow:0 3px 0 #2f4d37;transition:transform .2s}.sl-booth-next:hover{transform:translateY(-2px)}.sl-booth-error{color:#fff2c7;font-size:.66rem;text-align:center;margin:6px 0 0}
+.sl-control-deck{background:#b6d0b9;padding:12px 9px 10px;display:grid;grid-template-columns:65px 1fr;gap:8px;align-items:center}.sl-coin-slot-area{background:#eaf0dc;border:1px solid #95b59b;border-radius:8px;text-align:center;padding:6px 2px;color:#5c7c62}.sl-coin-slot-area span,.sl-coin-slot-area small{display:block;font-size:.46rem;font-weight:900;letter-spacing:.08em}.sl-slot{height:5px;width:25px;background:#4e6c55;border-radius:4px;margin:6px auto}.sl-coin-slot-area small{font-size:.4rem}.sl-coin-button{border:1px solid #91b197;border-radius:9px;background:#f9f7e8;color:#426349;min-height:43px;padding:7px 9px;display:flex;align-items:center;justify-content:center;gap:9px;font:inherit;font-size:.7rem;font-weight:950;letter-spacing:.08em;cursor:pointer;box-shadow:0 3px 0 #8cac92;transition:transform .2s,background .2s}.sl-coin-button:hover{transform:translateY(-2px);background:#fff}.sl-coin-button:disabled{opacity:.55;cursor:default;transform:none}.sl-coin-art{width:23px;height:23px;display:grid;place-items:center;border-radius:50%;background:#d6c58a;color:#806c35;border:2px solid #b5a368}.sl-coin-button b{font-size:1rem}.sl-machine-status{grid-column:1/-1;text-align:center;min-height:15px;color:#496a50;font-size:.66rem;font-weight:700}
+.sl-printer-housing{background:#a4c1a8;margin:0 -16px;padding:8px 15px 0;border-top:1px solid #8fae94;position:relative}.sl-printer-label{display:flex;justify-content:space-between;font-size:.48rem;font-weight:950;letter-spacing:.15em;color:#58775e;padding:0 2px 6px}.sl-printer-mouth{height:7px;background:#526e56;border-radius:5px;box-shadow:inset 0 2px 3px #2e4732}.sl-print-strip{height:0;overflow:hidden;background:#fffdf5;width:90%;margin:0 auto;box-shadow:0 5px 12px #344c3814;transition:height 1.3s cubic-bezier(.18,.75,.25,1);position:relative;z-index:2}.sl-print-strip.is-printed{height:410px;overflow:visible}.sl-print-content{padding:15px 14px 12px;opacity:0;transition:opacity .45s ease .75s;color:#314b37}.sl-print-strip.is-printed .sl-print-content{opacity:1}.sl-paper-heading{display:flex;justify-content:space-between;gap:8px;font-size:.46rem;font-weight:950;letter-spacing:.09em;color:#77927a}.sl-paper-title{font-family:Georgia,serif;font-size:1.18rem;letter-spacing:-.035em;margin:9px 0 12px}.sl-paper-main{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}.sl-progress-ring{width:104px;height:104px;border-radius:50%;background:conic-gradient(#648d6e calc(var(--sl-progress)*1%),#e3eadf 0);display:grid;place-items:center;position:relative;transition:background 1s ease}.sl-progress-ring:before{content:"";position:absolute;inset:7px;border-radius:50%;background:#fffdf5}.sl-progress-ring>div{position:relative;display:flex;align-items:center;flex-direction:column;gap:3px}.sl-progress-ring strong{font-size:1.5rem;letter-spacing:-.06em}.sl-progress-ring small{font-size:.47rem;color:#718374}.sl-paper-summary>strong{font-size:.78rem;line-height:1.25;display:block}.sl-paper-summary p{font-size:.65rem;line-height:1.45;color:#687b6b;margin:6px 0}.sl-paper-tags{display:flex;flex-wrap:wrap;gap:4px}.sl-paper-tags span{background:#edf3e8;border-radius:20px;padding:4px 6px;font-size:.49rem;font-weight:850;color:#56765b}.sl-paper-rule{border-top:1px dashed #c6d4c4;margin:12px 0 9px}.sl-generate-note{width:100%;border:1px solid #9db9a0;border-radius:7px;padding:8px;background:#e9f1e5;color:#42664b;font:inherit;font-size:.67rem;font-weight:900;cursor:pointer;transition:background .2s,transform .2s}.sl-generate-note:hover:not(:disabled){background:#d9e8d7;transform:translateY(-1px)}.sl-generate-note:disabled{opacity:.5;cursor:not-allowed}.sl-paper-foot{font-size:.53rem;line-height:1.4;color:#849184;text-align:center;margin:8px 0 0}.sl-note-strip{height:0;overflow:hidden;width:84%;margin:0 auto;background:#f9f5e8;box-shadow:0 6px 12px #344c3812;transition:height 1.15s cubic-bezier(.18,.75,.25,1)}.sl-note-strip.is-printed{height:260px;overflow:visible}.sl-note-paper{padding:15px 14px;opacity:0;transition:opacity .4s ease .7s;color:#314b37}.sl-note-strip.is-printed .sl-note-paper{opacity:1}.sl-note-label{font-size:.48rem;font-weight:950;letter-spacing:.1em;color:#68886c}.sl-note-paper h3{font-family:Georgia,serif;font-size:1.05rem;margin:9px 0}.sl-note-paper ul{padding-left:17px;margin:6px 0}.sl-note-paper li{font-size:.65rem;line-height:1.4;margin:6px 0;color:#5a705d}.sl-note-paper>p{font-size:.61rem;line-height:1.45;color:#758476}.sl-machine-foot{height:14px;background:#b8d0ba;margin:0 -16px;border-radius:0 0 9px 9px}
+.sl-below-machine{max-width:870px;margin:0 auto}.sl-instructions{text-align:center;margin:0 auto 28px;max-width:600px}.sl-step-pill{display:inline-block;background:#dce9d9;color:#5c7d62;border-radius:30px;padding:6px 11px;font-size:.61rem;font-weight:950;letter-spacing:.12em}.sl-instructions h3{font-size:1.4rem;letter-spacing:-.03em;margin:11px 0 6px}.sl-instructions p{color:var(--sl-muted);line-height:1.6;margin:0;font-size:.9rem}.sl-account-card{display:grid;grid-template-columns:1fr minmax(240px,.8fr);gap:25px;align-items:center;background:#e1ecdf;border:1px solid #d0dfce;border-radius:17px;padding:22px}.sl-account-card h3{font-size:1.3rem;margin:0 0 6px;letter-spacing:-.03em}.sl-account-card p{color:var(--sl-muted);font-size:.82rem;line-height:1.55}.sl-login-form{display:grid;gap:9px}.sl-login-form label{font-size:.72rem;font-weight:850;color:#53735a}.sl-login-form input{display:block;width:100%;margin-top:5px;padding:10px;border:1px solid #c2d6c2;border-radius:8px;background:#fffdf5;color:#2b4033;font:inherit}.sl-login-form>p{margin:0;font-size:.7rem}.sl-button{border-radius:9px;padding:11px 14px;font:inherit;font-size:.76rem;font-weight:850;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s;border:1px solid transparent}.sl-button:hover{transform:translateY(-2px)}.sl-button-dark{background:#4c7055;color:#fffdf2;box-shadow:0 3px 0 #38563f}.sl-button-dark:hover{background:#395e44}.sl-button-light{background:#f9f8ed;color:#4c7055;border-color:#c6d8c4}.sl-button-light:hover{background:#e8f0e4}.sl-lab-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0 0}.sl-analysis-card,.sl-comparison-card{margin:14px 0 0;background:#fffdf5;border:1px solid #d5e2d2;border-radius:13px;padding:18px;animation:slPop .4s ease both}.sl-analysis-card p,.sl-comparison-card p{font-size:.84rem;line-height:1.6;color:var(--sl-muted)}.sl-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sl-compare-box{background:#edf3e8;border-radius:9px;padding:12px}.sl-compare-box strong{font-size:.8rem}.sl-compare-box p{margin:5px 0 0}
+@keyframes slPop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}@media(max-width:600px){.sleep-lab{border-radius:17px;padding:16px}.sl-machine{max-width:360px;padding-left:11px;padding-right:11px}.sl-printer-housing{margin-left:-11px;margin-right:-11px}.sl-booth-window{height:350px}.sl-account-card{grid-template-columns:1fr;padding:17px}.sl-print-strip.is-printed{height:450px}.sl-paper-main{grid-template-columns:95px 1fr;gap:8px}.sl-progress-ring{width:90px;height:90px}.sl-progress-ring strong{font-size:1.3rem}.sl-note-strip.is-printed{height:285px}.sl-compare-grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){.sleep-lab *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.sleep-lab{
+  --sl-forest:#203c2e;--sl-green:#71957a;--sl-mint:#9fbea4;--sl-pale:#dce9dc;
+  --sl-cream:#f8f5e9;--sl-ink:#263a2d;--sl-muted:#69796d;--sl-line:#cbd8ca;
+  background:transparent!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;padding:clamp(16px,3vw,34px) 0!important;margin:24px auto!important;
+}
+.sleep-lab .sl-machine{
+  background:linear-gradient(145deg,#42644d,#2d4d39 58%,#223f2e);
+  border:2px solid #6d9276;box-shadow:0 22px 42px #182f211f, inset 0 1px #a9c8ac55;
+  padding-top:16px;
+}
+.sleep-lab .sl-machine-sign{background:#e9eddb;border:1px solid #8eaa8e;color:#294733;box-shadow:inset 0 0 0 3px #d9e4d2}
+.sleep-lab .sl-machine-sign small{color:#58795d}
+.sleep-lab .sl-machine-cap{background:#213d2d}
+.sleep-lab .sl-booth-window{height:365px;background:#203c2e;border-color:#7fa585;box-shadow:inset 0 0 0 2px #456d4d}
+.sleep-lab .sl-booth-scene{background:radial-gradient(ellipse at 48% 26%,#c8d9b2 0,#789b7c 42%,#345940 100%)}
+.sleep-lab .sl-window-moon{color:#f8f0c9;text-shadow:0 0 20px #fff2b2}
+.sleep-lab .sl-curtain{
+  background:repeating-linear-gradient(90deg,#73967a 0 13px,#5d8065 13px 25px,#6d8f73 25px 38px);
+  border-color:#42664a;box-shadow:inset 0 0 12px #1f3c28aa,0 0 8px #243e2a44;
+}
+.sleep-lab .sl-control-deck{background:#2e4e38;border-top:1px solid #789a7d;padding:14px 10px 10px}
+.sleep-lab .sl-coin-slot-area{background:#dce6cf;border-color:#7d9a7f;color:#45674a}
+.sleep-lab .sl-slot{height:6px;width:28px;background:#20392a;box-shadow:inset 0 1px 2px #101d15}
+.sleep-lab .sl-coin-button{
+  background:linear-gradient(180deg,#e8d9a5,#c9b56f);border:1px solid #f3e4b3;color:#3b4a2f;
+  box-shadow:0 4px 0 #8b8954,0 6px 12px #172c1b55;letter-spacing:.1em;
+}
+.sleep-lab .sl-coin-button:hover{background:linear-gradient(180deg,#f5e8b8,#d9c27d)}
+.sleep-lab .sl-coin-art{
+  width:28px;height:28px;flex-shrink:0;border:2px solid #8d783c;
+  background:radial-gradient(circle at 30% 25%,#fff0b9,#d8bd6d 45%,#a68d46);
+  box-shadow:inset 0 0 0 2px #f5e4a3,0 2px 3px #5a6139;
+  color:#75622c;font-size:.9rem;
+}
+.sleep-lab .sl-machine-status{color:#e0ebd9}
+.sleep-lab .sl-printer-housing{background:#345640;border-top-color:#7b9d7f}
+.sleep-lab .sl-printer-label{color:#dbe7d5}
+.sleep-lab .sl-printer-mouth{background:#14291b;box-shadow:inset 0 2px 4px #0b160e,0 1px #86a58a}
+.sleep-lab .sl-print-strip{
+  background:#fffdf4;
+  background-image:repeating-linear-gradient(0deg,#fffdf4 0,#fffdf4 22px,#f2f0e6 23px,#fffdf4 24px);
+  border-left:1px dashed #c7c5b7;border-right:1px dashed #c7c5b7;
+  box-shadow:0 8px 16px #10241835;
+}
+.sleep-lab .sl-print-strip.is-printed{height:430px}
+.sleep-lab .sl-print-content{font-family:"Courier New",Courier,monospace}
+.sleep-lab .sl-paper-title,.sleep-lab .sl-note-paper h3{font-family:Georgia,"Times New Roman",serif}
+.sleep-lab .sl-progress-ring{background:conic-gradient(#456e50 calc(var(--sl-progress)*1%),#dfe6d9 0);box-shadow:0 0 0 1px #d5dfd2}
+.sleep-lab .sl-progress-ring:before{background:#fffdf4}
+.sleep-lab .sl-generate-note{font-family:"Courier New",Courier,monospace;text-transform:uppercase;letter-spacing:.035em;background:#e3eadc;border-color:#9eae95}
+.sleep-lab .sl-generate-note:hover:not(:disabled){background:#d2e0ce}
+.sleep-lab .sl-note-strip{
+  background:#fffaf0;background-image:repeating-linear-gradient(0deg,#fffaf0 0,#fffaf0 22px,#f2ecdf 23px,#fffaf0 24px);
+  border-left:1px dashed #bdb7a5;border-right:1px dashed #bdb7a5;
+  box-shadow:0 8px 16px #10241830;
+}
+.sleep-lab .sl-note-strip.is-printed{height:280px}
+.sleep-lab .sl-note-paper{font-family:"Courier New",Courier,monospace}
+.sleep-lab .sl-note-label{letter-spacing:.07em}
+.sleep-lab .sl-machine-foot{background:#223f2e}
+.sleep-lab .sl-account-card{background:#e7eee2;border-color:#c7d7c6}
+.sleep-lab .sl-button-dark{background:#294b35;box-shadow:0 3px 0 #183321}
+.sleep-lab .sl-button-dark:hover{background:#1e3d29}
+.sleep-lab .sl-button-light{background:#f5f5e9;border-color:#bfd0bc}
+.sleep-lab .sl-step-pill{background:#dfeadd;color:#3d6547}
+.sleep-lab .sl-analysis-card,.sleep-lab .sl-comparison-card{background:#fbfaf1}
+.sleep-lab .sl-account-card[hidden]{display:none!important}
+@media(max-width:600px){
+ .sleep-lab .sl-booth-window{height:370px}
+ .sleep-lab .sl-print-strip.is-printed{height:470px}
+ .sleep-lab .sl-note-strip.is-printed{height:300px}
+}
+.sleep-lab{
+  --sl-ink:#26392d;--sl-muted:#526858;--sl-line:#c7d6c6;
+  font-family:Arial,Helvetica,sans-serif!important;
+  padding:12px 0!important;margin:14px auto!important;
+}
+/* --- Corrected Sleep Lab Header Text Colors --- */
+
+
+.sleep-lab .sl-eyebrow {
+  font-size: .76rem !important;
+  letter-spacing: .13em !important;
+  color: #f3e4b3 !important; /* Forces the light color */
+}
+.sleep-lab .sl-machine-stage{padding:4px 0 14px!important}
+.sleep-lab .sl-machine{width:min(100%,340px)!important;border-radius:17px 17px 10px 10px!important;padding:10px 11px 0!important}
+.sleep-lab .sl-machine-sign{height:48px!important;font-size:.94rem!important;letter-spacing:.12em!important}
+.sleep-lab .sl-machine-sign small{font-size:.54rem!important;margin-top:-8px!important}
+.sleep-lab .sl-machine-cap{margin-top:7px!important}
+.sleep-lab .sl-booth-window{height:255px!important;border-width:5px!important;border-bottom-width:6px!important}
+.sleep-lab .sl-booth-scene{background:radial-gradient(ellipse at 50% 23%,#f3e7bd 0,#a8c6a7 37%,#54785c 100%)!important}
+.sleep-lab .sl-window-moon{font-size:2rem!important}
+.sleep-lab .sl-booth-content{inset:8px!important}
+.sleep-lab .sl-booth-welcome strong{font-size:1rem!important}
+.sleep-lab .sl-booth-welcome p{font-size:.86rem!important;line-height:1.45!important}
+.sleep-lab .sl-booth-icon{font-size:1.8rem!important}
+.sleep-lab .sl-booth-question{padding:5px 4px!important;max-height:230px!important}
+.sleep-lab .sl-q-count{font-size:.7rem!important;color:#fff8dc!important}
+.sleep-lab .sl-booth-question h3{font-size:1.02rem!important;line-height:1.25!important}
+.sleep-lab .sl-booth-question>p{font-size:.84rem!important;line-height:1.35!important;margin-bottom:7px!important}
+.sleep-lab .sl-booth-options{gap:5px!important}
+.sleep-lab .sl-booth-options label{font-size:.83rem!important;line-height:1.3!important;padding:7px 8px!important}
+.sleep-lab .sl-booth-options input{width:15px;height:15px}
+.sleep-lab .sl-booth-next{font-size:.82rem!important;padding:8px 12px!important;margin-top:8px!important}
+.sleep-lab .sl-control-deck{padding:10px 8px 8px!important;grid-template-columns:72px 1fr!important;gap:8px!important}
+.sleep-lab .sl-coin-slot-area{padding:6px 3px!important}
+.sleep-lab .sl-coin-slot-area span{font-size:.59rem!important;letter-spacing:.04em!important}
+.sleep-lab .sl-coin-slot-area small{font-size:.52rem!important}
+.sleep-lab .sl-slot{height:6px!important;width:28px!important}
+.sleep-lab .sl-coin-button{min-height:46px!important;font-size:.8rem!important;gap:8px!important;letter-spacing:.06em!important;position:relative!important;overflow:visible!important}
+.sleep-lab .sl-coin-art{width:29px!important;height:29px!important;font-size:.92rem!important;box-shadow:inset 0 0 0 2px #f5e4a3,0 2px 3px #253c2a!important}
+.sleep-lab .sl-coin-button b{font-size:1.15rem!important}
+.sleep-lab .sl-machine-status{font-size:.79rem!important;line-height:1.3!important;color:#f1f5e7!important;padding-top:3px!important}
+.sleep-lab .sl-printer-housing{margin:0 -11px!important;padding:7px 10px 0!important}
+.sleep-lab .sl-printer-label{font-size:.62rem!important;letter-spacing:.1em!important;padding-bottom:5px!important}
+.sleep-lab .sl-print-strip.is-printed{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+.sleep-lab .sl-print-content{padding:12px 11px 10px!important}
+.sleep-lab .sl-paper-heading{font-size:.61rem!important;letter-spacing:.04em!important}
+.sleep-lab .sl-paper-title{font-size:1.16rem!important;margin:8px 0 10px!important}
+.sleep-lab .sl-paper-main{grid-template-columns:94px 1fr!important;gap:10px!important}
+.sleep-lab .sl-progress-ring{width:90px!important;height:90px!important}
+.sleep-lab .sl-progress-ring strong{font-size:1.35rem!important}
+.sleep-lab .sl-progress-ring small{font-size:.6rem!important}
+.sleep-lab .sl-paper-summary>strong{font-size:.9rem!important;line-height:1.3!important}
+.sleep-lab .sl-paper-summary p{font-size:.78rem!important;line-height:1.45!important;color:#526858!important}
+.sleep-lab .sl-paper-tags span{font-size:.62rem!important}
+.sleep-lab .sl-generate-note{font-size:.78rem!important;padding:9px!important}
+.sleep-lab .sl-paper-foot{font-size:.67rem!important;line-height:1.4!important}
+.sleep-lab .sl-note-strip.is-printed{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+.sleep-lab .sl-note-paper{padding:12px!important}
+.sleep-lab .sl-note-label{font-size:.62rem!important}
+.sleep-lab .sl-note-paper h3{font-size:1.05rem!important}
+.sleep-lab .sl-note-paper li{font-size:.78rem!important;line-height:1.4!important}
+.sleep-lab .sl-note-paper>p{font-size:.72rem!important;line-height:1.4!important}
+.sleep-lab .sl-machine-foot{height:10px!important}
+.sleep-lab .sl-instructions{margin:0 auto 15px!important}
+.sleep-lab .sl-step-pill{font-size:.7rem!important;letter-spacing:.08em!important}
+.sleep-lab .sl-instructions h3{font-size:1.25rem!important;margin:8px 0 5px!important}
+.sleep-lab .sl-instructions p{font-size:.92rem!important;line-height:1.5!important;color:#526858!important}
+.sleep-lab .sl-button{font-size:.85rem!important}
+.sleep-lab .sl-account-card{padding:16px!important;gap:14px!important}
+.sleep-lab .sl-account-card p,.sleep-lab .sl-login-form label{font-size:.86rem!important;line-height:1.5!important}
+.sleep-lab .sl-lab-actions{margin-top:14px!important;gap:8px!important}
+.sleep-lab .sl-analysis-card p,.sleep-lab .sl-comparison-card p{font-size:.9rem!important;line-height:1.55!important}
+.sleep-lab .sl-compare-box strong{font-size:.88rem!important}
+.sleep-lab .sl-compare-box p{font-size:.83rem!important}
+.sl-flying-coin{
+  position:fixed;z-index:999999;left:0;top:0;width:31px;height:31px;border-radius:50%;
+  display:grid;place-items:center;color:#6f5722;font-size:14px;font-weight:900;
+  background:radial-gradient(circle at 28% 22%,#fff2bd 0,#e5cb79 38%,#b49442 72%,#8a7135 100%);
+  border:2px solid #f4e5a9;box-shadow:inset 0 0 0 2px #b89b4e,0 5px 10px #17291b55;
+  pointer-events:none;transition:left .62s cubic-bezier(.2,.75,.3,1),top .62s cubic-bezier(.2,.75,.3,1),transform .62s ease,opacity .2s ease;
+}
+.sleep-lab .sl-coin-button.is-inserting .sl-coin-art{animation:slCoinLift .3s ease forwards}
+.sleep-lab .sl-slot.is-flashing{animation:slSlotFlash .45s ease 2}
+.sleep-lab .sl-machine.is-opening .sl-curtain-left{transform:translateX(-100%)}
+.sleep-lab .sl-machine.is-opening .sl-curtain-right{transform:translateX(100%)}
+@keyframes slCoinLift{to{transform:translateY(-3px) scale(.9);opacity:.2}}
+@keyframes slSlotFlash{50%{background:#e7d48d;box-shadow:0 0 12px #f2df8c}}
+@media(max-width:600px){
+ .sleep-lab{padding:8px 0!important}
+ .sleep-lab .sl-machine{max-width:330px!important}
+ .sleep-lab .sl-booth-window{height:260px!important}
+ .sleep-lab .sl-print-strip.is-printed{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+ .sleep-lab .sl-paper-main{grid-template-columns:82px 1fr!important;gap:8px!important}
+ .sleep-lab .sl-progress-ring{width:78px!important;height:78px!important}
+ .sleep-lab .sl-progress-ring strong{font-size:1.2rem!important}
+ .sleep-lab .sl-note-strip.is-printed{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+ .sleep-lab .sl-account-card{grid-template-columns:1fr!important}
+}
+</style>
+
+
+<style>
+/* SLEEP LAB — refined editorial finish + receipt overflow repair */
+.sleep-lab{
+  color:#26392d!important;
+  font-family:Inter,"Segoe UI",Arial,sans-serif!important;
+  max-width:980px!important;
+}
+.sleep-lab .sl-machine{
+  box-shadow:0 22px 48px rgba(31,55,38,.16),inset 0 1px rgba(255,255,255,.55)!important;
+  border:1px solid #304d38!important;
+  background:linear-gradient(135deg,#58765d 0%,#304d38 48%,#243c2c 100%)!important;
+}
+.sleep-lab .sl-machine-sign{
+  background:linear-gradient(180deg,#f8f1df,#e5d9b8)!important;
+  color:#26392d!important;
+  border:1px solid #d3c69f!important;
+  border-radius:7px!important;
+  text-shadow:none!important;
+  box-shadow:inset 0 1px #fffaf0,0 3px 0 #203728!important;
+}
+.sleep-lab .sl-booth-window{
+  box-shadow:inset 0 0 0 2px rgba(248,241,220,.6),0 4px 9px #1e342866!important;
+  border-color:#e6ddc6!important;
+  background:#a7bea4!important;
+}
+.sleep-lab .sl-booth-content{
+  overflow-y:auto!important;
+  scrollbar-width:thin!important;
+  scrollbar-color:#b7c8a8 transparent!important;
+}
+.sleep-lab .sl-booth-welcome,
+.sleep-lab .sl-booth-question{
+  text-shadow:none!important;
+}
+.sleep-lab .sl-booth-welcome strong,
+.sleep-lab .sl-booth-question h3{
+  color:#203b29!important;
+  font-weight:750!important;
+  letter-spacing:-.02em!important;
+}
+.sleep-lab .sl-booth-welcome p,
+.sleep-lab .sl-booth-question>p{
+  color:#314c37!important;
+  font-weight:500!important;
+}
+.sleep-lab .sl-booth-options label{
+  background:rgba(255,252,239,.96)!important;
+  color:#26392d!important;
+  border:1px solid #d5dfce!important;
+  border-radius:8px!important;
+  box-shadow:0 1px 2px rgba(28,48,33,.06)!important;
+  overflow-wrap:anywhere!important;
+  white-space:normal!important;
+}
+.sleep-lab .sl-booth-options label:has(input:checked){
+  border-color:#54775a!important;
+  background:#e8f0df!important;
+}
+.sleep-lab .sl-coin-button{
+  background:linear-gradient(180deg,#f3e5b8,#d7c07b)!important;
+  color:#2b3d2d!important;
+  border:1px solid #b59d56!important;
+  border-radius:8px!important;
+  box-shadow:0 3px 0 #203728!important;
+}
+.sleep-lab .sl-coin-slot-area{
+  color:#f8f2dd!important;
+}
+.sleep-lab .sl-slot{
+  background:#15271b!important;
+  border:1px solid #8e9c75!important;
+  box-shadow:inset 0 2px 4px #0008!important;
+}
+.sleep-lab .sl-printer-housing{
+  background:linear-gradient(180deg,#2b4532,#213a29)!important;
+  border-top:1px solid #769079!important;
+}
+.sleep-lab .sl-print-strip,
+.sleep-lab .sl-note-strip{
+  height:0;
+  overflow:hidden;
+  transition:height 1.15s cubic-bezier(.2,.65,.25,1)!important;
+}
+.sleep-lab .sl-print-strip.is-printed,
+.sleep-lab .sl-note-strip.is-printed{
+  height:auto!important;
+  overflow:visible!important;
+  max-height:none!important;
+  min-height:0!important;
+  padding-bottom:0!important;
+}
+.sleep-lab .sl-print-content,
+.sleep-lab .sl-note-paper{
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+  padding:16px 15px 15px!important;
+  color:#293b2c!important;
+  background:
+    repeating-linear-gradient(to bottom,transparent 0,transparent 25px,rgba(98,119,89,.09) 26px),
+    #fffdf5!important;
+  border:1px solid #e5dfce!important;
+  box-shadow:0 8px 22px rgba(27,45,29,.12)!important;
+}
+.sleep-lab .sl-paper-heading,
+.sleep-lab .sl-note-label{
+  color:#61715c!important;
+  font-size:.67rem!important;
+  letter-spacing:.12em!important;
+  font-weight:800!important;
+}
+.sleep-lab .sl-paper-title{
+  color:#26392d!important;
+  font-size:1.28rem!important;
+  line-height:1.2!important;
+  font-weight:800!important;
+  overflow-wrap:anywhere!important;
+}
+.sleep-lab .sl-paper-main{
+  display:grid!important;
+  grid-template-columns:92px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:14px!important;
+}
+.sleep-lab .sl-progress-ring{
+  width:88px!important;height:88px!important;
+  flex-shrink:0!important;
+}
+.sleep-lab .sl-paper-summary,
+.sleep-lab .sl-paper-summary p,
+.sleep-lab .sl-paper-foot,
+.sleep-lab .sl-note-paper li,
+.sleep-lab .sl-note-paper p{
+  min-width:0!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  line-height:1.5!important;
+}
+.sleep-lab .sl-paper-summary p{font-size:.8rem!important;margin:5px 0!important}
+.sleep-lab .sl-paper-summary>strong{font-size:.92rem!important;line-height:1.35!important}
+.sleep-lab .sl-paper-tags{display:flex!important;flex-wrap:wrap!important;gap:5px!important}
+.sleep-lab .sl-paper-tags span{
+  display:inline-flex!important;align-items:center!important;
+  max-width:100%!important;white-space:normal!important;
+  overflow-wrap:anywhere!important;line-height:1.3!important;
+  padding:4px 7px!important;border-radius:20px!important;
+  background:#e8eee1!important;color:#344d38!important;
+}
+.sleep-lab .sl-generate-note{
+  margin:13px 0 0!important;padding:10px 11px!important;
+  background:#f0f2e7!important;border-left:3px solid #6d8868!important;
+  color:#334a37!important;line-height:1.5!important;
+  white-space:normal!important;overflow-wrap:anywhere!important;
+}
+.sleep-lab .sl-paper-foot{
+  margin-top:12px!important;padding-top:8px!important;
+  border-top:1px dashed #c7cbb8!important;
+  font-size:.7rem!important;color:#687363!important;
+}
+.sleep-lab .sl-note-paper h3{
+  margin:8px 0 10px!important;font-size:1.16rem!important;
+  line-height:1.25!important;color:#26392d!important;
+  overflow-wrap:anywhere!important;
+}
+.sleep-lab .sl-note-paper ul{
+  margin:0!important;padding-left:19px!important;
+  display:grid!important;gap:8px!important;
+}
+.sleep-lab .sl-note-paper li{
+  padding-left:2px!important;font-size:.83rem!important;
+  color:#354b38!important;
+}
+.sleep-lab .sl-note-paper p{
+  font-size:.76rem!important;color:#667260!important;
+  margin:12px 0 0!important;
+}
+.sleep-lab .sl-note-paper li strong{color:#26392d!important}
+.sleep-lab .sl-account-card,
+.sleep-lab .sl-analysis-card,
+.sleep-lab .sl-comparison-card{
+  border-radius:14px!important;border-color:#d3dfce!important;
+  box-shadow:0 8px 24px rgba(36,59,39,.06)!important;
+}
+.sleep-lab .sl-button{
+  border-radius:8px!important;letter-spacing:.01em!important;
+  font-weight:700!important;
+}
+@media(max-width:520px){
+ .sleep-lab .sl-paper-main{grid-template-columns:1fr!important;justify-items:center!important;text-align:center!important}
+ .sleep-lab .sl-paper-summary{width:100%!important;text-align:left!important}
+ .sleep-lab .sl-paper-tags{justify-content:flex-start!important}
+ .sleep-lab .sl-print-content,.sleep-lab .sl-note-paper{padding:13px 12px!important}
+ .sleep-lab .sl-note-paper ul{gap:7px!important}
+}
+/* --- Force Nightshift Lab Title & Bottom Line to Wheat Color --- */
+/* --- OVERRIDE: FORCE WHEAT COLOR ON SLEEP LAB HEADER --- */
+
+</style>
+
+
+<style>
+/* Final Sleep Lab polish: compact title and saved-history panel */
+.sleep-lab .sl-header{max-width:700px;margin:0 auto 12px!important;text-align:left!important}
+.sleep-lab .sl-header .sl-eyebrow{font-size:.67rem!important;letter-spacing:.15em!important;margin-bottom:5px!important}
+.sleep-lab .sl-header h2{
+  font-size:clamp(1.35rem,2.4vw,1.75rem)!important;
+  line-height:1.18!important;letter-spacing:-.035em!important;
+  font-weight:800!important;color:#26392d!important;margin:0 0 5px!important;
+}
+.sleep-lab .sl-header>p{font-size:.88rem!important;line-height:1.45!important;color:#526858!important}
+.sleep-lab .sl-below-machine{max-width:760px!important}
+.sleep-lab .sl-lab-actions{margin-top:12px!important}
+.sleep-lab .sl-saved-card{background:#fbfaf2!important;border:1px solid #d3dfce!important;border-radius:13px!important;padding:17px!important}
+.sleep-lab .sl-saved-card>strong{font-size:1rem!important;color:#26392d!important}
+.sleep-lab .sl-saved-card>p{font-size:.84rem!important;color:#526858!important;line-height:1.5!important}
+.sleep-lab .sl-saved-list{display:grid!important;gap:9px!important;margin-top:12px!important}
+.sleep-lab .sl-saved-item{background:#fffef8!important;border:1px solid #dce4d5!important;border-radius:10px!important;padding:12px!important}
+.sleep-lab .sl-saved-item-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}
+.sleep-lab .sl-saved-item-top strong{font-size:.88rem!important;color:#26392d!important}
+.sleep-lab .sl-saved-score{font-size:1rem!important;font-weight:850!important;color:#3f6948!important;background:#e8f0e3!important;border-radius:7px!important;padding:5px 8px!important;flex-shrink:0!important}
+.sleep-lab .sl-saved-item p{font-size:.78rem!important;color:#526858!important;line-height:1.45!important;margin:6px 0 0!important;overflow-wrap:anywhere!important}
+.sleep-lab .sl-saved-routine{font-size:.73rem!important;color:#6c7968!important}
+.sleep-lab .sl-header h2 span{color:#7b967b!important}
+@media(max-width:600px){
+ .sleep-lab .sl-header{text-align:center!important;padding:0 8px!important}
+ .sleep-lab .sl-saved-item{padding:10px!important}
+}
+</style>
+
+
+<style>
+/* Final title adjustment */
+.sleep-lab .sl-header{
+  text-align:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.sleep-lab .sl-header h1,
+.sleep-lab .sl-header h2,
+.sleep-lab .sl-header .sl-title{
+  width:100%!important;
+  text-align:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  color:#26392d!important;
+  font-size:clamp(1.55rem,2.5vw,2rem)!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:-.025em!important;
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="stars" aria-hidden="true"></div>
+<span class="shoot" style="top:10%;--d:0s" aria-hidden="true"></span>
+<span class="shoot" style="top:4%;--d:4.5s" aria-hidden="true"></span>
+<span class="shoot" style="top:18%;--d:8.5s" aria-hidden="true"></span>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="logo">🌙</span>Night&nbsp;Shift</a>
+    <ul class="nav-links">
+      <li><a href="#biology">Biology</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#calc">Calculator</a></li>
+      <li><a href="#versus">Deprivation?</a></li>
+      <li><a href="#effects">Effects</a></li>
+      <li><a href="#habits">Habits</a></li>
+      <li><a href="#sleep-lab">Sleep-lab</a></li>
+      <li><a href="#sources">Sources</a></li>
+      </ul>
+    <a class="btn small" href="#calc">⏰ Try it</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="chips reveal">
+        <span class="chip">🌿 Presidency Green Club</span>
+        <span class="chip">🦅 House Eagle</span>
+      </div>
+      <h1 class="reveal">SLEEP</h1>
+      <p class="shift reveal">Your body's night shift</p>
+      <p class="script cyan reveal">Better Sleep, Brighter Future ✨</p>
+      <p class="hero-sub reveal">Sleep Hygiene · Sustainable Health &amp; Well-being :a fun little tour through the science of a good night's rest. Scroll down and let the stars guide you. 🌠</p>
+      <div class="hero-btns reveal">
+        <a class="btn" href="#biology">Explore the night ↓</a>
+        <a class="btn ghost" href="#calc">🛏 Try the bedtime calculator</a>
+      </div>
+      <p class="script yellow reveal">Healthy students build a sustainable tomorrow 🌍</p>
+    </div>
+    <div class="hero-art reveal" id="heroArt">
+      <div class="moon" id="moon">
+        <span class="crater c1"></span><span class="crater c2"></span><span class="crater c3"></span>
+      </div>
+      <span class="zz z1" aria-hidden="true">z</span>
+      <span class="zz z2" aria-hidden="true">Z</span>
+      <span class="zz z3" aria-hidden="true">z</span>
+      <div class="star-badge">🦅<small>House Eagle</small></div>
+    </div>
+  </div>
+  <a class="scrolldown" href="#biology" aria-label="Scroll down"><span></span></a>
+</header>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="tk">🌙 SLEEP WELL <em>✦</em> 🧠 THINK CLEARLY <em>✦</em> 💪 LIVE HEALTHILY <em>✦</em> 🛏 KEEP A REGULAR SCHEDULE <em>✦</em> 📵 SCREENS DOWN BEFORE BED <em>✦</em> ☕ MIND THE CAFFEINE <em>✦</em></span>
+    <span class="tk">🌙 SLEEP WELL <em>✦</em> 🧠 THINK CLEARLY <em>✦</em> 💪 LIVE HEALTHILY <em>✦</em> 🛏 KEEP A REGULAR SCHEDULE <em>✦</em> 📵 SCREENS DOWN BEFORE BED <em>✦</em> ☕ MIND THE CAFFEINE <em>✦</em></span>
+  </div>
+</div>
+<!-- ================= 1 · BIOLOGY ================= -->
+<section class="sec" id="biology">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">1</span>
+      <div><h2 class="title">The Biology of Sleep</h2><p class="kicker">Meet the night crew that runs your body 🌙</p></div>
+    </div>
+    <p class="lead reveal">Sleep is regulated by your body's <b>circadian clock</b> and several biological processes  and hormones play a key role. Light, the circadian clock and hormone balance all work together to control when you sleep and when you wake. Here's the crew on duty every night:</p>
+    <div class="bio-layout">
+      <div class="bio-grid">
+        <div class="card bio mel reveal">
+          <div class="icon-bub">🌙</div>
+          <h3>Melatonin</h3>
+          <p>Signals that it's biological night and helps you fall asleep. It rises in the evening as it gets dark.</p>
+          <span class="tag">The sleepy time hormone</span>
+        </div>
+        <div class="card bio cor reveal">
+          <div class="icon-bub">☀️</div>
+          <h3>Cortisol</h3>
+          <p>Helps with alertness and the sleep wake cycle. It's usually higher in the morning to get you going.</p>
+          <span class="tag">The wake-up call</span>
+        </div>
+        <div class="card bio brn reveal">
+          <div class="icon-bub">🧠</div>
+          <h3>Brain</h3>
+          <p>Controls sleep and alertness  <mark>#sorted memories,</mark> flushing out waste and recharging you as you rest.</p>
+          <span class="tag">Mission control</span>
+        </div>
+        <div class="card bio hrt reveal">
+          <div class="icon-bub">🫀</div>
+          <h3>Heart &amp; Body</h3>
+          <p>Regulates your physical health  overnight repair, muscle growth and a steady, healthy heartbeat.</p>
+          <span class="tag">Night maintenance</span>
+        </div>
+      </div>
+      <div class="orbit-panel reveal">
+        <div class="orbit" aria-hidden="true">
+          <div class="ring"></div>
+          <div class="spin">
+            <span class="sat"><span class="sat-emoji">☀️</span></span>
+            <span class="sat sat2"><span class="sat-emoji">🌙</span></span>
+          </div>
+          <div class="orbit-center"><div class="core">🛌</div></div>
+        </div>
+        <p class="orbit-cap">Your <b>circadian rhythm</b> : a built-in 24-hour cycle that tells your body when to feel awake and when to wind down. 🕐</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 · HOW MUCH SLEEP ================= -->
+<section class="sec" id="hours">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">2</span>
+      <div><h2 class="title">How Much Sleep?</h2><p class="kicker">Recommended daily sleep by age group 💤</p></div>
+    </div>
+    <p class="lead reveal">Everyone needs a different amount of shut-eye  and yes, the younger you are, the more you need. Watch the bars grow!</p>
+    <div class="sleep-panel reveal" id="sleepPanel">
+      <div class="bar-row">
+        <div class="bar-head"><span class="age">👶 Newborns <small>(0–3 months)</small></span><span class="hrs" data-low="14" data-high="17"><b class="lo">0</b>–<b class="hi">0</b> h</span></div>
+        <div class="bar-track"><div class="bar-fill b1" data-w="94%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span class="age">🍼 Infants <small>(4–12 months)</small></span><span class="hrs" data-low="12" data-high="16"><b class="lo">0</b>–<b class="hi">0</b> h</span></div>
+        <div class="bar-track"><div class="bar-fill b2" data-w="89%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span class="age">🧒 Young children <small>(1–5 years)</small></span><span class="hrs" data-low="10" data-high="14"><b class="lo">0</b>–<b class="hi">0</b> h</span></div>
+        <div class="bar-track"><div class="bar-fill b3" data-w="78%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span class="age">🎒 School-aged children <small>(6–12 years)</small></span><span class="hrs" data-low="9" data-high="12"><b class="lo">0</b>–<b class="hi">0</b> h</span></div>
+        <div class="bar-track"><div class="bar-fill b4" data-w="67%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span class="age">🧑‍🎓 Teenagers <small>(13–18 years)</small></span><span class="hrs" data-low="8" data-high="10"><b class="lo">0</b>–<b class="hi">0</b> h</span></div>
+        <div class="bar-track"><div class="bar-fill b5" data-w="56%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span class="age">🧑 Adults <small>(18 years and up)</small></span><span class="hrs" data-low="7" data-high="9"><b class="lo">0</b>–<b class="hi">0</b> h</span></div>
+        <div class="bar-track"><div class="bar-fill b6" data-w="50%"></div></div>
+      </div>
+      <div class="panel-note">
+        <p>These are general recommendations and may vary for each individual.</p>
+        <span class="fun-chip">😴 Fun fact: newborns sleep almost 2× more than adults!</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BEDTIME CALCULATOR ================= -->
+<section class="sec" id="calc">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">⏰</span>
+      <div><h2 class="title">The Bedtime Calculator</h2><p class="kicker">Wake up feeling like a champion 🏆</p></div>
+    </div>
+    <p class="lead reveal">Sleep runs in <b>~90-minute cycles</b>. Pick your wake-up time and we'll do the math (adding 15 minutes to drift off).</p>
+    <div class="calc-panel reveal">
+      <div class="calc-top">
+        <label for="wakeTime">I want to wake up at</label>
+        <input type="time" id="wakeTime" value="06:30">
+        <button class="btn" id="calcBtn" type="button">✨ Show my best bedtimes</button>
+      </div>
+      <p class="calc-sub">Tip: the ⭐ option gives teenagers their recommended 8–10 hours.</p>
+      <div class="calc-results" id="calcResults"></div>
+    </div>
+  </div>
+</section>
+<!-- ================= 3 · DEPRIVATION vs INSOMNIA ================= -->
+<section class="sec" id="versus">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">3</span>
+      <div><h2 class="title">Sleep Deprivation <span style="color:var(--cyan)">vs</span> Insomnia</h2><p class="kicker">Two different night-time villains 🦹</p></div>
+    </div>
+    <p class="lead reveal">They sound similar, but they're not the same thing. One is about <b>not enough time</b> asleep the other is about <b>not enough quality</b> sleep even when there is time.</p>
+    <div class="vs-grid">
+      <div class="vs-card dep reveal">
+        <span class="big-ico">🔋</span>
+        <h3>Sleep Deprivation</h3>
+        <p>Not getting enough sleep, often because there simply isn't enough time for it. Late night study sessions, early alarms, scrolling "just one more video"… the battery never fully recharges.</p>
+      </div>
+      <div class="vs-badge reveal">VS</div>
+      <div class="vs-card ins reveal">
+        <span class="big-ico">🛏️</span>
+        <h3>Insomnia</h3>
+        <p>Persistent difficulty falling asleep, staying asleep, or getting good quality sleep despite having enough time for it. You're in bed, lights off… but your brain didn't get the memo.</p>
+      </div>
+    </div>
+    <div class="vs-note reveal"><span>💡 They are different problems, although they can overlap.</span></div>
+  </div>
+</section>
+
+<!-- ================= 4 · EFFECTS OF POOR SLEEP ================= -->
+<section class="sec" id="effects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">4</span>
+      <div><h2 class="title">The Effects of Poor Sleep</h2><p class="kicker">What happens when the night shift goes off duty 😵‍💫</p></div>
+    </div>
+    <p class="lead reveal">Missing sleep isn't just about feeling sleepy. It ripples through your <b>brain</b>, your <b>emotions</b> and your <b>body</b> — starting from the very first night.</p>
+    <div class="fx-grid">
+      <div class="card fx brai reveal">
+        <div class="fx-icon">🧠</div>
+        <h3>Brain</h3>
+        <ul>
+          <li>Reduced concentration</li>
+          <li>Slower reaction times</li>
+          <li>Difficulty learning</li>
+          <li>Poor multi-tasking</li>
+        </ul>
+      </div>
+      <div class="card fx emot reveal">
+        <div class="fx-icon">😟</div>
+        <h3>Emotions</h3>
+        <ul>
+          <li>Irritability</li>
+          <li>Mood swings</li>
+          <li>Feeling overwhelmed</li>
+          <li>More stress</li>
+        </ul>
+      </div>
+      <div class="card fx bodi reveal">
+        <div class="fx-icon">🫀</div>
+        <h3>Body</h3>
+        <ul>
+          <li>Tension headaches</li>
+          <li>Fatigue</li>
+          <li>Weaker immune system</li>
+          <li>Higher risk of type 2 diabetes, high blood pressure &amp; high cholesterol (long-term)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="strips">
+      <div class="strip imm reveal">
+        <h4>Immediate Effects <span class="when">· 1–2 nights</span></h4>
+        <ul>
+          <li>Less focus</li>
+          <li>Lower performance</li>
+          <li>Mood changes</li>
+        </ul>
+      </div>
+      <div class="strip long reveal">
+        <h4>Long-Term Risks <span class="when">· chronic sleep deprivation</span></h4>
+        <ul>
+          <li>Type 2 diabetes</li>
+          <li>High blood pressure</li>
+          <li>High cholesterol</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5 · HEALTHY SLEEP HABITS ================= -->
+<section class="sec" id="habits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">5</span>
+      <div><h2 class="title">Healthy Sleep Habits</h2><p class="kicker">Five small wins for a big upgrade ✨</p></div>
+    </div>
+    <p class="lead reveal">Good sleep is a habit, not an accident. Stack these five simple moves and your body will thank you every single morning.</p>
+    <div class="habit-grid">
+      <div class="card habit h1c reveal">
+        <div class="h-icon">🛏️</div>
+        <h3>Keep a regular sleep schedule</h3>
+        <p>Even on weekends. Yes, really!</p>
+      </div>
+      <div class="card habit h2c reveal">
+        <div class="h-icon">☕</div>
+        <h3>Limit caffeine</h3>
+        <p>And avoid it late in the day.</p>
+      </div>
+      <div class="card habit h3c reveal">
+        <div class="h-icon">📵</div>
+        <h3>Reduce screen time</h3>
+        <p>Ditch bright light before bed.</p>
+      </div>
+      <div class="card habit h4c reveal">
+        <div class="h-icon">🌑</div>
+        <h3>Set up your cave</h3>
+        <p>Dark, quiet and comfortable.</p>
+      </div>
+      <div class="card habit h5c reveal">
+        <div class="h-icon">🪷</div>
+        <h3>Wind down</h3>
+        <p>End the day with a relaxing routine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sleep-lab" id="sleep-lab">
+  <header class="sl-header">
+    <span class="sl-eyebrow">THE NIGHT SHIFT · SLEEP LAB</span>
+    
+  </header>
+
+  <div class="sl-machine-stage">
+    <div class="sl-machine" id="slMachine">
+      <div class="sl-machine-sign"><span class="sl-sign-star">✳</span><span>SLEEP LAB</span><small>YOUR DAILY RESET · EST. 2026</small></div>
+      <div class="sl-machine-cap"></div>
+
+      <div class="sl-booth-window">
+        <div class="sl-booth-scene">
+          <div class="sl-window-moon">☾</div>
+          <div class="sl-window-glow"></div>
+          <div class="sl-booth-content" id="slBoothContent">
+            <div class="sl-booth-welcome">
+              <span class="sl-booth-icon">☁</span>
+              <strong>Your quiet corner</strong>
+              <p>Insert a coin to begin your sleep check-in.</p>
+            </div>
+          </div>
+          <div class="sl-curtain sl-curtain-left" id="slCurtainLeft"></div>
+          <div class="sl-curtain sl-curtain-right" id="slCurtainRight"></div>
+        </div>
+      </div>
+
+      <div class="sl-control-deck">
+        <div class="sl-coin-slot-area"><span>COIN SLOT</span><div class="sl-slot"></div><small>ONE CHECK-IN</small></div>
+        <button class="sl-coin-button" id="slCoinButton" type="button" aria-label="Insert a coin to start">
+          <span class="sl-coin-art" aria-hidden="true">✦</span><span class="sl-coin-label">INSERT COIN</span><b>↓</b>
+        </button>
+        <div class="sl-machine-status" id="slMachineStatus" role="status">The booth is waiting for you.</div>
+      </div>
+
+      <div class="sl-printer-housing">
+        <div class="sl-printer-label"><span>REPORT PRINTER</span><span>▰ ▰ ▰</span></div>
+        <div class="sl-printer-mouth"></div>
+        <div class="sl-print-strip" id="slPrintStrip">
+          <div class="sl-print-content" id="slPrintContent">
+            <div class="sl-paper-heading"><span>THE NIGHT SHIFT</span><span id="slReportDate">SLEEP LAB · TODAY</span></div>
+            <div class="sl-paper-title">Your sleep snapshot</div>
+            <div class="sl-paper-main">
+              <div class="sl-progress-ring" id="slProgressRing" style="--sl-progress:0">
+                <div><strong id="slScore">0%</strong><small>habits checked</small></div>
+              </div>
+              <div class="sl-paper-summary">
+                <strong id="slSummaryTitle">Your report is ready.</strong>
+                <p id="slSummaryText">Complete your check-in to print your personal summary.</p>
+                <div class="sl-paper-tags"><span id="slHoursTag">Sleep amount</span><span id="slHabitTag">0 / 5 habits</span></div>
+              </div>
+            </div>
+            <div class="sl-paper-rule"></div>
+            <button class="sl-generate-note" id="slGenerateNote" type="button" disabled>Print my feedback note <span>↓</span></button>
+            <p class="sl-paper-foot">Small changes count. This is a habit check-in, not a medical assessment.</p>
+          </div>
+        </div>
+        <div class="sl-note-strip" id="slNoteStrip">
+          <div class="sl-note-paper">
+            <div class="sl-note-label">✦ A NOTE FROM YOUR SLEEP LAB</div>
+            <h3>Your next gentle steps</h3>
+            <ul id="slFeedbackList"></ul>
+            <p id="slFeedbackClosing">Choose one small idea to try. You do not have to change everything at once.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sl-machine-foot"></div>
+    </div>
+  </div>
+
+  <div class="sl-below-machine">
+    <div class="sl-instructions">
+      <span class="sl-step-pill" id="slStepPill">READY WHEN YOU ARE</span>
+      <h3 id="slPromptTitle">Start with last night.</h3>
+      <p id="slPromptText">The questions appear inside the booth after you insert the coin. Your progress sheet will print from the slot underneath.</p>
+    </div>
+
+    <div class="sl-account-card" id="slAccountCard" hidden>
+      <div>
+        <span class="sl-eyebrow">YOUR PRIVATE SLEEP JOURNAL</span>
+        <h3>Save your check-ins</h3>
+        <p>Sign in with the same nickname and passcode on this browser to see your saved trackers.</p>
+      </div>
+      <form id="slLoginForm" class="sl-login-form">
+        <label>Nickname<input id="slNickname" maxlength="30" autocomplete="username" placeholder="Your nickname" required></label>
+        <label>Passcode<input id="slPasscode" type="password" minlength="4" autocomplete="current-password" placeholder="At least 4 characters" required></label>
+        <button type="submit" class="sl-button sl-button-dark">Sign in / create profile</button>
+        <p id="slLoginMessage" role="status"></p>
+      </form>
+    </div>
+
+    <div class="sl-lab-actions">
+      <button class="sl-button sl-button-light" id="slDecompose" type="button">✳ Decompose my habits</button>
+      <button class="sl-button sl-button-dark" id="slShowSaved" type="button">▤ Saved trackers</button>
+    </div>
+    <div class="sl-analysis-card" id="slAnalysisCard" hidden></div>
+    <div class="sl-analysis-card sl-saved-card" id="slSavedCard" hidden aria-live="polite"></div>
+  </div>
+  
+</section>
+
+<!-- ================= THE BIG PICTURE ================= -->
+<section class="sec" id="big">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">🌿</span>
+      <div><h2 class="title">The Big Picture</h2><p class="kicker">Sustainability starts between the sheets 🌍</p></div>
+    </div>
+    <div class="big-card reveal">
+      <span class="leaf l1" aria-hidden="true">🍃</span>
+      <span class="leaf l2" aria-hidden="true">🌿</span>
+      <span class="leaf l3" aria-hidden="true">🍃</span>
+      <span class="earth" aria-hidden="true">🌍</span>
+      <p class="script-title">Good sleep supports every system</p>
+      <p class="main">Good sleep is about a healthier you and more focused mind contributing to a more sustainable world.</p>
+      <span class="hl">Healthy People, Healthy Planet 🍃</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING QUOTE ================= -->
+<section class="quote-sec">
+  <p class="q-line reveal"><span class="hl-c">Sleep Well.</span></p>
+  <p class="q-line reveal"><span class="hl-y">Think Clearly.</span></p>
+  <p class="q-line reveal"><span class="hl-g">Live Healthily.</span> ✨</p>
+  <svg class="trees" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true" height="220">
+    <path fill="#04122b" d="M0,220 L0,150 L60,150 L60,110 L90,70 L120,110 L120,150 L180,150 L180,90 L210,40 L240,90 L240,150 L330,150 L330,120 L360,80 L390,120 L390,150 L470,150 L470,100 L500,55 L530,100 L530,150 L640,150 L640,130 L680,95 L720,130 L720,150 L800,150 L800,85 L830,30 L860,85 L860,150 L950,150 L950,115 L985,75 L1020,115 L1020,150 L1110,150 L1110,95 L1140,50 L1170,95 L1170,150 L1270,150 L1270,125 L1305,90 L1340,125 L1340,150 L1440,150 L1440,220 Z"/>
+    <circle cx="1210" cy="52" r="26" fill="#ffe9a8" opacity=".9"/>
+  </svg>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section class="sec" id="sources" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">📚</span>
+      <div><h2 class="title">Sources</h2><p class="kicker">Learn more from the sleep experts 🔗</p></div>
+    </div>
+    <div class="src-grid">
+      <a class="src-card reveal" href="https://www.cdc.gov/sleep/" target="_blank" rel="noopener">
+        <h4>Centers for Disease Control and Prevention (CDC)</h4>
+        <p>Sleep and Sleep Disorders : resources on sleep health and hygiene.</p>
+        <span class="url">www.cdc.gov/sleep →</span>
+      </a>
+      <a class="src-card reveal" href="https://aasm.org/sleep-health/" target="_blank" rel="noopener">
+        <h4>American Academy of Sleep Medicine (AASM)</h4>
+        <p>Sleep health information from clinical sleep-medicine specialists.</p>
+        <span class="url">aasm.org/sleep-health →</span>
+      </a>
+      <a class="src-card reveal" href="https://www.nhlbi.nih.gov/health-topics/sleep" target="_blank" rel="noopener">
+        <h4>National Heart, Lung, and Blood Institute (NHLBI)</h4>
+        <p>Sleep and heart health : the science behind rest and recovery.</p>
+        <span class="url">nhlbi.nih.gov →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot">
+  <div class="foot-brand">
+    <span><i>🏫</i>Presidency International School</span>
+    <span><i>🌿</i>Presidency Green Club</span>
+    <span><i>🦅</i>House Eagle</span>
+  </div>
+  <small>Made with 💤 by students, (for students ) because every great day starts the night before. 🌙</small>
+</footer>
+
+<button id="topBtn" type="button" aria-label="Back to top">🌙</button>
+<script>
+/* ================= STARFIELD ================= */
+(function(){
+  const field = document.getElementById('stars');
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < 150; i++){
+    const s = document.createElement('span');
+    const big = Math.random() > .86;
+    const size = big ? 3 : (Math.random() < .8 ? 2 : 2.6);
+    s.className = big ? 'big' : '';
+    s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (Math.random()*100) + '%;' +
+      'width:' + size + 'px;height:' + size + 'px;' +
+      'animation-duration:' + (2.5 + Math.random()*4.5) + 's;animation-delay:' + (Math.random()*7) + 's;';
+    frag.appendChild(s);
+  }
+  field.appendChild(frag);
+})();
+
+/* ================= SCROLL REVEAL (staggered) ================= */
+const io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    if(e.target.id === 'sleepPanel') growBars(e.target);
+    io.unobserve(e.target);
+  });
+}, {threshold:.16, rootMargin:'0px 0px -40px 0px'});
+
+document.querySelectorAll('.reveal').forEach(function(el){
+  const parent = el.parentElement;
+  const sibs = parent ? Array.from(parent.children).filter(function(c){ return c.classList.contains('reveal'); }) : [];
+  el.style.setProperty('--d', (Math.max(0, sibs.indexOf(el)) * 0.09) + 's');
+  io.observe(el);
+});
+
+/* ================= COUNTERS + BAR GROWTH ================= */
+function countUp(el, target, dur){
+  const t0 = performance.now();
+  function tick(t){
+    const p = Math.min((t - t0) / dur, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+function growBars(panel){
+  panel.querySelectorAll('.bar-fill').forEach(function(f, i){
+    setTimeout(function(){ f.style.width = f.dataset.w; }, 140 + i * 150);
+  });
+  panel.querySelectorAll('.hrs').forEach(function(h){
+    countUp(h.querySelector('.lo'), +h.dataset.low, 1350);
+    countUp(h.querySelector('.hi'), +h.dataset.high, 1350);
+  });
+}
+
+/* ================= BEDTIME CALCULATOR ================= */
+const CALC = [
+  {c:6, hrs:'9 h',  tag:"Dreamer's choice",    cls:'c1', best:false},
+  {c:5, hrs:'7.5 h',tag:'Recommended ⭐',      cls:'c2', best:true},
+  {c:4, hrs:'6 h',  tag:'Quick recharge',      cls:'c3', best:false},
+  {c:3, hrs:'4.5 h',tag:'Power nap plus',      cls:'c4', best:false}
+];
+function fmt(mins){
+  mins = ((mins % 1440) + 1440) % 1440;
+  let h = Math.floor(mins / 60), m = mins % 60;
+  const ap = h < 12 ? 'AM' : 'PM';
+  h = h % 12; if(h === 0) h = 12;
+  return h + ':' + String(m).padStart(2, '0') + ' ' + ap;
+}
+function runCalc(){
+  const box = document.getElementById('calcResults');
+  const val = document.getElementById('wakeTime').value || '06:30';
+  const p = val.split(':');
+  const wake = (+p[0]) * 60 + (+p[1]);
+  box.innerHTML = CALC.map(function(o, i){
+    const bed = wake - 15 - o.c * 90;
+    return '<div class="cycle-card ' + o.cls + (o.best ? ' best' : '') + '" style="--i:' + i + '">' +
+      '<div class="cc-time">🛏 ' + fmt(bed) + '</div>' +
+      '<div class="cc-meta">' + o.c + ' sleep cycles · ' + o.hrs + ' of sleep</div>' +
+      '<div class="cc-tag">' + o.tag + '</div></div>';
+  }).join('');
+}
+document.getElementById('calcBtn').addEventListener('click', runCalc);
+document.getElementById('wakeTime').addEventListener('change', runCalc);
+runCalc();
+
+/* ================= NAV / PROGRESS / BACK-TO-TOP ================= */
+const nav = document.querySelector('.nav');
+const prog = document.getElementById('progress');
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', function(){
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 40);
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  topBtn.classList.toggle('show', y > 700);
+}, {passive:true});
+topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+/* ================= ACTIVE NAV LINK ================= */
+const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+const secObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+    });
+  });
+}, {rootMargin:'-38% 0px -55% 0px'});
+document.querySelectorAll('section[id], header[id]').forEach(function(s){ secObs.observe(s); });
+
+/* ================= MOON PARALLAX ================= */
+(function(){
+  const moon = document.getElementById('moon');
+  if(!moon || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let raf = null;
+  window.addEventListener('mousemove', function(e){
+    if(raf) return;
+    raf = requestAnimationFrame(function(){
+      const x = e.clientX / window.innerWidth - .5;
+      const y = e.clientY / window.innerHeight - .5;
+      moon.style.translate = (x * 24) + 'px ' + (y * 16) + 'px';
+      raf = null;
+    });
+  }, {passive:true});
+})();
+(() => {
+  const byId = id => document.getElementById(id);
+  const machine = byId('slMachine');
+  const boothContent = byId('slBoothContent');
+  const status = byId('slMachineStatus');
+  const coinButton = byId('slCoinButton');
+  const printStrip = byId('slPrintStrip');
+  const noteStrip = byId('slNoteStrip');
+  const habits = [
+    {key:'regular', label:'Kept a fairly regular sleep and wake time'},
+    {key:'screens', label:'Put screens away before bed'},
+    {key:'caffeine', label:'Avoided caffeine late in the day'},
+    {key:'winddown', label:'Had a calm wind-down routine'},
+    {key:'room', label:'Made my room comfortable and quiet'}
+  ];
+  let step = 0, opened = false, current = null, signedInUser = localStorage.getItem('nightshift-active-user') || null;
+  let answers = {hours:'', routine:'', habits:[]};
+
+  const localKey = () => 'nightshift-sleep-trackers-' + signedInUser;
+  const loadTracks = () => {
+    try { return signedInUser ? JSON.parse(localStorage.getItem(localKey()) || '[]') : []; }
+    catch { return []; }
+  };
+
+  function saveCurrentTracker() {
+    if (!signedInUser || !current) return false;
+    const list = loadTracks();
+    if (list.some(item => item.timestamp === current.timestamp)) return false;
+    list.push(current);
+    localStorage.setItem(localKey(), JSON.stringify(list));
+    return true;
+  }
+
+  function renderSavedTrackers() {
+    const box = byId('slSavedCard');
+    box.hidden = false;
+    box.innerHTML = '';
+    const heading = document.createElement('strong');
+    heading.textContent = '▤ Your saved sleep check-ins';
+    box.appendChild(heading);
+
+    if (!signedInUser) {
+      const message = document.createElement('p');
+      message.textContent = 'Sign in below to view the trackers saved to your browser profile.';
+      box.appendChild(message);
+      byId('slAccountCard').hidden = false;
+      byId('slLoginMessage').textContent = 'Sign in to view your saved trackers.';
+      byId('slAccountCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const saved = loadTracks();
+    if (!saved.length) {
+      const message = document.createElement('p');
+      message.textContent = 'No saved check-ins yet. Complete a sleep check-in and sign in; it will be saved automatically.';
+      box.appendChild(message);
+      return;
+    }
+
+    const intro = document.createElement('p');
+    intro.textContent = saved.length + (saved.length === 1 ? ' check-in saved' : ' check-ins saved') + ' for ' + signedInUser + '.';
+    box.appendChild(intro);
+
+    const list = document.createElement('div');
+    list.className = 'sl-saved-list';
+    [...saved].reverse().forEach((track, index) => {
+      const card = document.createElement('article');
+      card.className = 'sl-saved-item';
+      const top = document.createElement('div');
+      top.className = 'sl-saved-item-top';
+      const date = document.createElement('strong');
+      date.textContent = track.date || 'Saved check-in';
+      const score = document.createElement('span');
+      score.className = 'sl-saved-score';
+      score.textContent = (Number(track.score) || 0) + '%';
+      top.append(date, score);
+
+      const detail = document.createElement('p');
+      const checked = Array.isArray(track.habits) ? track.habits.length : 0;
+      detail.textContent = (track.hoursText || 'Sleep amount not recorded') + ' · ' + checked + ' / ' + habits.length + ' habits checked';
+      const routine = document.createElement('p');
+      routine.className = 'sl-saved-routine';
+      routine.textContent = 'Bedtime: ' + (track.routineText || 'not recorded');
+      card.append(top, detail, routine);
+      list.appendChild(card);
+    });
+    box.appendChild(list);
+  }
+  const setStatus = message => { status.textContent = message; };
+  const dateLabel = () => new Date().toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+
+  function questionMarkup() {
+    let title = '', prompt = '', options = '';
+    if (step === 1) {
+      title = 'How much sleep did you get?';
+      prompt = 'Think about last night.';
+      options = [
+        ['hours','less','Less than 6 hours'],
+        ['hours','some','About 6–8 hours'],
+        ['hours','enough','About 8–10 hours']
+      ];
+    } else if (step === 2) {
+      title = 'How did bedtime feel?';
+      prompt = 'Choose what feels closest to your night.';
+      options = [
+        ['routine','steady','Mostly calm and steady'],
+        ['routine','mixed','A little inconsistent'],
+        ['routine','late','Very late or rushed']
+      ];
+    } else if (step === 3) {
+      title = 'Which habits did you manage?';
+      prompt = 'Tick every habit that fits today.';
+      options = habits.map(h => ['habit',h.key,h.label]);
+    }
+    const choiceMarkup = options.map(([type,value,label]) => {
+      const isCheck = type === 'habit';
+      const checked = isCheck ? answers.habits.includes(value) : answers[type] === value;
+      return `<label><input type="${isCheck?'checkbox':'radio'}" name="sl-in-booth-${type}" data-kind="${type}" value="${value}" ${checked?'checked':''}><span>${label}</span></label>`;
+    }).join('');
+    const button = step === 3 ? 'Print my progress sheet ↓' : 'Next question →';
+    boothContent.innerHTML = `<div class="sl-booth-question"><div class="sl-q-count">SLEEP CHECK-IN · ${step} OF 3</div><h3>${title}</h3><p>${prompt}</p><div class="sl-booth-options">${choiceMarkup}</div><p class="sl-booth-error" id="slBoothError"></p><button class="sl-booth-next" id="slBoothNext" type="button">${button}</button></div>`;
+    boothContent.querySelectorAll('input').forEach(input => input.addEventListener('change', () => {
+      if (input.dataset.kind === 'habit') {
+        if (input.checked && !answers.habits.includes(input.value)) answers.habits.push(input.value);
+        if (!input.checked) answers.habits = answers.habits.filter(x => x !== input.value);
+      } else answers[input.dataset.kind] = input.value;
+    }));
+    byId('slBoothNext').addEventListener('click', nextStep);
+  }
+
+  function start() {
+    if (opened) return;
+    opened = true;
+    coinButton.disabled = true;
+    coinButton.classList.add('is-inserting');
+    setStatus('Coin accepted… opening the booth.');
+
+    const coinArt = coinButton.querySelector('.sl-coin-art');
+    const slot = document.querySelector('#slMachine .sl-slot');
+    const from = coinArt.getBoundingClientRect();
+    const to = slot.getBoundingClientRect();
+    const flying = document.createElement('span');
+    flying.className = 'sl-flying-coin';
+    flying.textContent = '✦';
+    flying.style.left = (from.left + from.width / 2 - 15) + 'px';
+    flying.style.top = (from.top + from.height / 2 - 15) + 'px';
+    document.body.appendChild(flying);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        flying.style.left = (to.left + to.width / 2 - 15) + 'px';
+        flying.style.top = (to.top + to.height / 2 - 15) + 'px';
+        flying.style.transform = 'scale(.55) rotate(300deg)';
+      });
+    });
+
+    setTimeout(() => {
+      flying.style.opacity = '0';
+      flying.style.transform = 'scale(.1) rotate(520deg)';
+      slot.classList.add('is-flashing');
+      setTimeout(() => flying.remove(), 220);
+      coinButton.querySelector('.sl-coin-label').textContent = 'COIN INSERTED';
+      coinButton.querySelector('b').textContent = '✓';
+      machine.classList.add('is-opening', 'is-open');
+      setStatus('Curtains opening… your check-in is starting.');
+      byId('slStepPill').textContent = 'CHECK-IN IN PROGRESS';
+      byId('slPromptTitle').textContent = 'Your questions are inside the booth.';
+      byId('slPromptText').textContent = 'Choose your answers inside the open booth. Your progress sheet prints below when you finish.';
+      setTimeout(() => {
+        step = 1;
+        questionMarkup();
+        setStatus('Question 1 of 3 — take your time.');
+      }, 650);
+    }, 650);
+  }
+  coinButton.addEventListener('click', start);
+
+  function nextStep() {
+    if (step === 1 && !answers.hours) {
+      byId('slBoothError').textContent = 'Choose one answer to continue.';
+      return;
+    }
+    if (step === 2 && !answers.routine) {
+      byId('slBoothError').textContent = 'Choose one answer to continue.';
+      return;
+    }
+    if (step < 3) {
+      step++;
+      questionMarkup();
+      setStatus('Question ' + step + ' of 3 — you’re doing well.');
+      return;
+    }
+    createReport();
+  }
+
+  function feedbackFor() {
+    const tips = [];
+    if (answers.hours === 'less') tips.push('If you can, give yourself more time for sleep tonight. Try moving bedtime earlier by 15–20 minutes instead of changing everything at once.');
+    if (answers.routine === 'late') tips.push('Choose one wind-down cue before bed, such as reading a few pages or preparing tomorrow’s school bag.');
+    if (answers.routine === 'mixed') tips.push('Try keeping your wake-up time fairly consistent and making your bedtime routine simple.');
+    if (!answers.habits.includes('screens')) tips.push('Try putting screens away a little before bedtime so your mind has time to settle.');
+    if (!answers.habits.includes('caffeine')) tips.push('Keep coffee, tea, and other caffeinated drinks earlier in the day.');
+    if (!answers.habits.includes('winddown')) tips.push('Try a calm 10-minute wind-down: quiet reading, gentle stretching, or slow breathing.');
+    if (!answers.habits.includes('room')) tips.push('Make your sleep space as comfortable, dim, and quiet as you reasonably can.');
+    if (!answers.habits.includes('regular')) tips.push('Aim for a sleep and wake time that is fairly regular and realistic for your school schedule.');
+    if (!tips.length) tips.push('Keep the helpful habits going. A steady routine matters more than a perfect night.');
+    return tips.slice(0,3);
+  }
+
+  function createReport() {
+    const score = Math.round(answers.habits.length / habits.length * 100);
+    const hoursText = {less:'Under 6 hours',some:'6–8 hours',enough:'8–10 hours'};
+    const routineText = {steady:'steady',mixed:'a little mixed',late:'late or rushed'};
+    current = {
+      date:dateLabel(), timestamp:Date.now(), score,
+      hours:answers.hours, hoursText:hoursText[answers.hours],
+      routine:answers.routine, routineText:routineText[answers.routine],
+      habits:[...answers.habits], feedback:feedbackFor()
+    };
+    byId('slReportDate').textContent = 'SLEEP LAB · ' + current.date.toUpperCase();
+    byId('slScore').textContent = score + '%';
+    byId('slProgressRing').style.setProperty('--sl-progress',score);
+    byId('slSummaryTitle').textContent = score >= 80 ? 'A thoughtful set of habits.' : score >= 40 ? 'Some good habits are already here.' : 'Start small. Build gently.';
+    byId('slSummaryText').textContent = `You checked off ${answers.habits.length} of ${habits.length} sleep-friendly habits. You reported ${hoursText[answers.hours].toLowerCase()} of sleep and a ${routineText[answers.routine]} bedtime rhythm. This percentage counts the habits you ticked; it is not a measure of sleep quality or a medical score.`;
+    byId('slHoursTag').textContent = hoursText[answers.hours];
+    byId('slHabitTag').textContent = answers.habits.length + ' / ' + habits.length + ' habits';
+    byId('slGenerateNote').disabled = false;
+    if (signedInUser) {
+      saveCurrentTracker();
+      byId('slLoginMessage').textContent = 'Your check-in has been saved automatically to your profile.';
+    } else {
+      byId('slAccountCard').hidden = false;
+      byId('slLoginMessage').textContent = 'Sign in once to save this check-in automatically and keep your tracker history.';
+    }
+    printStrip.classList.add('is-printed');
+    byId('slStepPill').textContent = 'PROGRESS SHEET PRINTED';
+    byId('slPromptTitle').textContent = 'Your report has printed.';
+    byId('slPromptText').textContent = 'Your progress sheet is ready. Print your feedback note, and sign in to save this check-in automatically.';
+    setStatus('Printing your progress sheet…');
+    setTimeout(() => { setStatus('Progress sheet ready.'); printStrip.scrollIntoView({behavior:'smooth',block:'center'}); }, 950);
+  }
+
+  byId('slGenerateNote').addEventListener('click', () => {
+    if (!current) return;
+    byId('slFeedbackList').innerHTML = '';
+    current.feedback.forEach(tip => {
+      const li = document.createElement('li');
+      li.textContent = tip;
+      byId('slFeedbackList').appendChild(li);
+    });
+    byId('slFeedbackClosing').textContent = 'Pick one idea that feels realistic for you. Small, repeatable changes are enough to begin.';
+    noteStrip.classList.add('is-printed');
+    setStatus('Your feedback note is printing…');
+    setTimeout(() => { setStatus('Your feedback note is ready.'); noteStrip.scrollIntoView({behavior:'smooth',block:'center'}); }, 850);
+  });
+
+  async function passDigest(value) {
+    // Hashes the passcode for this browser-only demo; this is not production authentication.
+    try {
+      if (crypto && crypto.subtle) {
+        const data = new TextEncoder().encode(value);
+        const hash = await crypto.subtle.digest('SHA-256',data);
+        return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');
+      }
+    } catch {}
+    return value;
+  }
+
+  byId('slLoginForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    const nickname = byId('slNickname').value.trim().toLowerCase();
+    const passcode = byId('slPasscode').value;
+    if (!nickname || passcode.length < 4) {
+      byId('slLoginMessage').textContent = 'Enter a nickname and a passcode of at least 4 characters.';
+      return;
+    }
+    const digest = await passDigest(passcode);
+    let profiles = {};
+    try { profiles = JSON.parse(localStorage.getItem('nightshift-local-profiles') || '{}'); } catch {}
+    if (profiles[nickname] && profiles[nickname] !== digest) {
+      byId('slLoginMessage').textContent = 'That passcode does not match this browser profile. Try again or use another nickname.';
+      return;
+    }
+    profiles[nickname] = digest;
+    localStorage.setItem('nightshift-local-profiles', JSON.stringify(profiles));
+    localStorage.setItem('nightshift-active-user', nickname);
+    signedInUser = nickname;
+
+    const savedNow = saveCurrentTracker();
+    byId('slLoginMessage').textContent = savedNow
+      ? 'Signed in. Your current check-in has been saved automatically.'
+      : 'Signed in as ' + nickname + '. Your saved trackers are ready.';
+    renderSavedTrackers();
+  });
+
+  byId('slShowSaved').addEventListener('click', () => {
+    const box = byId('slSavedCard');
+    if (!box.hidden) {
+      box.hidden = true;
+      return;
+    }
+    renderSavedTrackers();
+    if (!box.hidden) box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  byId('slDecompose').addEventListener('click', () => {
+    const box = byId('slAnalysisCard');
+    box.hidden = false;
+    if (!current) {
+      box.innerHTML = '<strong>✳ Sleep Lab is analysing your routine…</strong><p>Complete a check-in first. Then this panel can break your selected habits into small next steps.</p>';
+    } else {
+      const missing = habits.filter(h => !current.habits.includes(h.key)).map(h => h.label);
+      box.innerHTML = '<strong>✳ Habit decomposition complete</strong><p>Your current check-in includes ' + current.habits.length + ' of ' + habits.length + ' habits. ' + (missing.length ? 'Habits to consider next: ' + missing.slice(0,3).join('; ') + '.' : 'You ticked every listed habit — focus on keeping the routine realistic and repeatable.') + '</p><p>Try choosing just one small habit to practise, then check in again tomorrow.</p>';
+    }
+    box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+
+})();
+</script>
+</body>
+</html>
